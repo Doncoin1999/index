@@ -38,7 +38,7 @@
     <li><a href="#supply">Token and supply</a></li>
     <li><a href="#rewards">Daily rewards</a></li>
     <li><a href="#invitations">Invitations</a></li>
-    <li><a href="#founder">Founder allocation</a></li>
+    <li><a href="#founder">Founder and Development Team</a></li>
     <li><a href="#vault">Liquidity Vault and pool</a></li>
     <li><a href="#fees">Fees and costs</a></li>
     <li><a href="#change">What can change</a></li>
@@ -50,7 +50,7 @@
 <p>A player needs a Solana wallet with a little SOL and a computer (Windows or Mac) with a supported browser. The game runs in the DONCOIN web app and on the DONCOIN program on Solana; nobody holds players' keys or funds.</p>
 <ol>
   <li><b>Connect a wallet</b> (for example Phantom in Chrome).</li>
-  <li><b>Prove you are a unique person</b> with Civic verification. One person, one account.</li>
+  <li><b>Pass a CAPTCHA check</b> with Civic, which keeps automated bots out. The pass is valid for 30 days and is renewed the next time you connect.</li>
   <li><b>Sign the Terms of Use</b> with the wallet and pay a refundable account deposit (about 0.0098 SOL).</li>
   <li><b>Check in once a day.</b> Each check-in earns points for that day.</li>
   <li><b>Earn a share of the day's issuance.</b> After the day ends, your share is settled and locked.</li>
@@ -60,26 +60,26 @@
 <p>Every rule in this paper is enforced by the on-chain program. Where the app and the program differ, the program decides.</p>
 
 <h2 id="supply">2. Token and supply</h2>
-<p>At most 21,000,000 DON can ever exist. Half is issued in the first 548 days (about 18 months), and the daily amount halves every 548 days after that.</p>
+<p>At most 21,000,000 DON can ever exist. The Development Team receives 650,000 DON at launch (section 5). Every other DON is issued day by day: 19,160.58 DON a day until the first halving on day 514, after which the daily amount halves every 548 days (about 18 months). Half of the maximum supply, including the Development Team allocation, is issued by the first halving.</p>
 <ul>
   <li><b>Name and ticker:</b> DONCOIN, DON. A standard SPL token on Solana with 9 decimals.</li>
   <li><b>Who can create DON:</b> only the DONCOIN program, through a program-controlled mint authority. No person holds it. The token has no freeze authority, so nobody can freeze holders' DON.</li>
-  <li><b>No pre-mine, no sale:</b> no DON exists at launch, and none is sold by the Founder or anyone else. Every DON is issued day by day under the rules below.</li>
+  <li><b>Development Team allocation, no sale:</b> 650,000 DON (about 3.1% of the maximum supply) are credited to the Development Team at launch and locked for 4 months (section 5). Apart from this, no DON exists at launch, and none is sold by the Founder or anyone else.</li>
   <li><b>Token address:</b> <span class="mono">Published here before launch</span>. Any token with another address is not DONCOIN, whatever its name or logo.</li>
   <li><b>Day and month:</b> a day is 24 hours from the launch time; a month is 30.4375 days.</li>
 </ul>
 <table>
   <thead><tr><th>Period</th><th class="n">Days</th><th class="n">DON per day</th><th class="n">DON in period</th><th class="n">Share of max issued by end</th></tr></thead>
   <tbody>
-    <tr><td>1</td><td class="n">0–547</td><td class="n">19,160.58</td><td class="n">10,500,000</td><td class="n">50%</td></tr>
-    <tr><td>2</td><td class="n">548–1,095</td><td class="n">9,580.29</td><td class="n">5,250,000</td><td class="n">75%</td></tr>
-    <tr><td>3</td><td class="n">1,096–1,643</td><td class="n">4,790.15</td><td class="n">2,625,000</td><td class="n">87.5%</td></tr>
-    <tr><td>4</td><td class="n">1,644–2,191</td><td class="n">2,395.07</td><td class="n">1,312,500</td><td class="n">93.75%</td></tr>
-    <tr><td>5</td><td class="n">2,192–2,739</td><td class="n">1,197.54</td><td class="n">656,250</td><td class="n">96.875%</td></tr>
-    <tr><td>6</td><td class="n">2,740–3,287</td><td class="n">598.77</td><td class="n">328,125</td><td class="n">98.44%</td></tr>
+    <tr><td>1</td><td class="n">0–513</td><td class="n">19,160.58</td><td class="n">650,000 at launch + 9,848,540</td><td class="n">50%</td></tr>
+    <tr><td>2</td><td class="n">514–1,061</td><td class="n">9,580.29</td><td class="n">5,250,000</td><td class="n">75%</td></tr>
+    <tr><td>3</td><td class="n">1,062–1,609</td><td class="n">4,790.15</td><td class="n">2,625,000</td><td class="n">87.5%</td></tr>
+    <tr><td>4</td><td class="n">1,610–2,157</td><td class="n">2,395.07</td><td class="n">1,312,500</td><td class="n">93.75%</td></tr>
+    <tr><td>5</td><td class="n">2,158–2,705</td><td class="n">1,197.54</td><td class="n">656,250</td><td class="n">96.875%</td></tr>
+    <tr><td>6</td><td class="n">2,706–3,253</td><td class="n">598.77</td><td class="n">328,125</td><td class="n">98.44%</td></tr>
   </tbody>
 </table>
-<p>Halving continues until the daily amount rounds to zero, after about 45 halvings. Because of rounding, slightly less than 21,000,000 DON will be issued in total. The schedule is fixed in the program and can never be changed.</p>
+<p>The Development Team allocation is taken from the start of the schedule: the schedule begins 34 days in, so the first halving comes 34 days earlier, on day 514 (17 April 2028) instead of day 548. The 34 skipped days are worth 651,459.85 DON, slightly more than the 650,000 allocated. Halving continues until the daily amount rounds to zero, after about 45 halvings, so slightly less than 21,000,000 DON (about 1,460 DON less) will be issued in total. The schedule is fixed in the program and can never be changed.</p>
 
 <h2 id="rewards">3. Daily rewards</h2>
 <p>Each day's issuance is shared by points among everyone who checked in that day, plus the Founder, who always counts as one participant (section 5). No player can receive more than 1% of a day's issuance.</p>
@@ -101,7 +101,7 @@
     <tr><td>9,999</td><td class="n">1.92</td><td class="n">1.92</td></tr>
   </tbody>
 </table>
-<p>Amounts in DON for period 1, one point per player. From 99 players and up, the Founder receives the same as a single player.</p>
+<p>Amounts in DON until the first halving, one point per player. From 99 players and up, the Founder receives the same as a single player.</p>
 
 <h2 id="invitations">4. Invitations</h2>
 <p>A player can invite others with a single-use code; when the new player reaches 30 active days, both get 10 bonus points. There is one level only: nobody earns from the people their invitees invite.</p>
@@ -112,7 +112,7 @@
   <li><b>Limits:</b> an inviter can receive at most 3 bonuses per month; pending bonus points are capped at 100; at most 10 open codes per player in the app; nobody can invite themselves.</li>
 </ul>
 
-<h2 id="founder">5. Founder allocation</h2>
+<h2 id="founder">5. Founder and Development Team allocations</h2>
 <p>The Founder receives every day's remainder: whatever part of the day's issuance the players do not receive. 80% of it goes to the Founder and 20% to the Liquidity Vault. With few players this is most of each day's issuance; from about 100 players it equals one player's share.</p>
 <h3>The rules, as the program applies them</h3>
 <ol>
@@ -126,7 +126,7 @@
   <li><b>No fees.</b> The Founder pays no conversion fee in DON or SOL.</li>
   <li><b>Same Terms.</b> The Founder must sign the Terms of Use every 6 months like every player, and cannot convert without a valid signature.</li>
   <li><b>Account cannot be closed.</b> The Founder account stays open so that remainders can always be settled.</li>
-  <li><b>No other allocation.</b> The Founder receives nothing else: no pre-mine, no team tokens, no sale proceeds, no share of fees.</li>
+  <li><b>No other allocation.</b> The Founder receives nothing else: no pre-mine, no sale proceeds, no share of fees.</li>
 </ol>
 <table>
   <thead><tr><th>Other players checking in</th><th class="n">Remainder per day</th><th class="n">Founder (80%)</th><th class="n">Liquidity Vault (20%)</th></tr></thead>
@@ -139,7 +139,17 @@
     <tr><td>999</td><td class="n">19.16</td><td class="n">15.33</td><td class="n">3.83</td></tr>
   </tbody>
 </table>
-<p>Amounts in DON per day in period 1; they halve with each period. Over one month, a remainder with no other players gives the Founder about 466,560 DON (2.2% of the maximum supply); with 10 players about 419,900 DON (2.0%); with 1,000 players about 466 DON.</p>
+<p>Amounts in DON per day until the first halving; they halve with each period. Over one month, a remainder with no other players gives the Founder about 466,560 DON (2.2% of the maximum supply); with 10 players about 419,900 DON (2.0%); with 1,000 players about 466 DON.</p>
+
+<h3 id="devteam">Development Team allocation</h3>
+<p>The Development Team builds and runs the game. Its wallet is set when the program is launched and can never be changed.</p>
+<ol>
+  <li><b>650,000 DON in advance.</b> At launch the program credits 650,000 DON (about 3.1% of the maximum supply) to the Development Team's account, before any player has played.</li>
+  <li><b>Taken from the schedule.</b> The allocation replaces the first 34 days of the issuance schedule, so the total stays within 21,000,000 DON and the first halving comes on day 514 (17 April 2028) instead of day 548 (section 2).</li>
+  <li><b>Locked like everyone else.</b> The allocation is locked for 4 months and can be converted from month 4 (about 21 March 2027).</li>
+  <li><b>No check-ins, normal fees.</b> The Development Team does not check in, pays the normal conversion fees to the Liquidity Vault, and must sign the Terms of Use every 6 months.</li>
+  <li><b>Nothing else.</b> The Development Team receives no daily share, no part of the Founder remainder, no sale proceeds and no share of fees.</li>
+</ol>
 
 <h2 id="vault">6. Liquidity Vault and pool</h2>
 <p>The Liquidity Vault is a program account with no private key. It collects fees and the 20% remainder share, and its only possible use is to add DON and SOL in pairs to one trading pool on Raydium, where its position is locked forever.</p>
@@ -155,7 +165,7 @@
 <p>A pool does not guarantee any price or that DON can be sold. Prices are set by trading between other people.</p>
 
 <h2 id="fees">7. Fees and costs for players</h2>
-<p>A daily player who converts once a month pays about 0.0032 SOL a month in fees and network costs, plus 3% of the DON they convert. None of it goes to the Founder: network fees go to Solana validators and conversion fees go to the Liquidity Vault.</p>
+<p>A daily player who converts once a month pays about 0.0032 SOL a month in fees and network costs, plus 3% of the DON they convert, plus Civic's CAPTCHA pass (about USD 0.05 in SOL every 30 days, paid to Civic). None of it goes to the Founder: network fees go to Solana validators, the pass fee goes to Civic and conversion fees go to the Liquidity Vault.</p>
 <table>
   <thead><tr><th>Cost</th><th>Amount</th><th>When</th><th>Goes to</th><th>Returned?</th></tr></thead>
   <tbody>
@@ -167,7 +177,7 @@
     <tr><td>Terms signature</td><td>≈ 0.000005 SOL</td><td>Every 6 months</td><td>Solana validators</td><td>No</td></tr>
   </tbody>
 </table>
-<p>The DON fee can never exceed 3% and the SOL fee can never exceed 0.01 SOL. Solana may add priority fees when the network is busy. Players should accept that they may lose all costs of playing.</p>
+<p>The DON fee can never exceed 3% and the SOL fee can never exceed 0.01 SOL. Civic sets its own pass price, and Solana may add priority fees when the network is busy. A CAPTCHA check stops automated bots, but it cannot stop one person from running several wallets; the 1% cap applies per account. Players should accept that they may lose all costs of playing.</p>
 
 <h2 id="change">8. What can and cannot change</h2>
 <p>The supply, issuance schedule, lock period, Founder rules and Vault rules are fixed in the program. An administrator can adjust a few parameters within hard limits until the program is frozen; after that nothing can be changed. "Never" below holds fully once the right to upgrade the program has been removed; until then an upgrade could change any rule.</p>
@@ -177,6 +187,7 @@
     <tr><td>Max supply 21,000,000, issuance and halving schedule</td><td>Never</td></tr>
     <tr><td>4-month lock, 30-day settlement window, check-in and referral rules</td><td>Never (fixed in code)</td></tr>
     <tr><td>Founder wallet, Founder rules and 80/20 split</td><td>Never</td></tr>
+    <tr><td>Development Team wallet and its 650,000 DON allocation</td><td>Never</td></tr>
     <tr><td>Vault can only add paired liquidity; pool position locked</td><td>Never</td></tr>
     <tr><td>Per-player cap (default 1%)</td><td>Before freeze, up to 100%</td></tr>
     <tr><td>Conversion fees (default 3% + 0.003 SOL)</td><td>Before freeze, max 3% and 0.01 SOL</td></tr>

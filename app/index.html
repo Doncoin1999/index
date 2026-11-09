@@ -82,7 +82,7 @@ footer{max-width:1240px;margin:0 auto;padding:0 24px 32px;display:flex;flex-wrap
 <footer>
   <span>DONCOIN is purely a game for entertainment, not a financial product of any kind.</span>
   <span>Official DON token address: <a class="mono" id="tokenlink" target="_blank" rel="noopener"></a></span>
-  <span class="row"><a href="#" data-a="view-terms">Terms of Use v3.0</a><a href="#" data-a="disconnect" id="disc" hidden>Disconnect</a></span>
+  <span class="row"><a href="#" data-a="view-terms">Terms of Use v3.1</a><a href="#" data-a="disconnect" id="disc" hidden>Disconnect</a></span>
 </footer>
 <div class="modal" id="tm" hidden role="dialog" aria-modal="true" aria-labelledby="tt">
   <div class="sheet"><div class="sh"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="DONCOIN"><defs><linearGradient id="dg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F7D88A"/><stop offset=".5" stop-color="#E2A53C"/><stop offset="1" stop-color="#B8761A"/></linearGradient><radialGradient id="dc" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#1D3D33"/><stop offset="1" stop-color="#0B1C17"/></radialGradient></defs><circle cx="64" cy="64" r="63" fill="url(#dg)"/><g stroke="#7A4E0E" stroke-width="2.2" stroke-linecap="round" opacity=".55"><line x1="64.00" y1="7.00" x2="64.00" y2="3.50"/><line x1="92.50" y1="14.64" x2="94.25" y2="11.61"/><line x1="113.36" y1="35.50" x2="116.39" y2="33.75"/><line x1="121.00" y1="64.00" x2="124.50" y2="64.00"/><line x1="113.36" y1="92.50" x2="116.39" y2="94.25"/><line x1="92.50" y1="113.36" x2="94.25" y2="116.39"/><line x1="64.00" y1="121.00" x2="64.00" y2="124.50"/><line x1="35.50" y1="113.36" x2="33.75" y2="116.39"/><line x1="14.64" y1="92.50" x2="11.61" y2="94.25"/><line x1="7.00" y1="64.00" x2="3.50" y2="64.00"/><line x1="14.64" y1="35.50" x2="11.61" y2="33.75"/><line x1="35.50" y1="14.64" x2="33.75" y2="11.61"/></g><circle cx="64" cy="64" r="53.5" fill="url(#dc)"/><circle cx="64" cy="64" r="53.5" fill="none" stroke="#F7D88A" stroke-opacity=".28" stroke-width="1.2"/><path d="M45 37 H61 A27 27 0 0 1 61 91 H45 Z" fill="none" stroke="url(#dg)" stroke-width="10" stroke-linejoin="round"/><circle cx="61" cy="64" r="8.5" fill="url(#dg)"/></svg><div><h2 id="tt">DONCOIN Terms of Use</h2><p class="small" style="color:#bcd0c6" id="tsub"></p></div></div>
@@ -118,14 +118,14 @@ footer{max-width:1240px;margin:0 auto;padding:0 24px 32px;display:flex;flex-wrap
   const { PublicKey, Connection, Transaction, TransactionInstruction, SystemProgram, Keypair, ComputeBudgetProgram } = W;
   const qs = new URLSearchParams(location.search);
   const RPC = qs.get("rpc") || "https://api.devnet.solana.com";
-  const PROGRAM = new PublicKey(qs.get("program") || "8ExhqxkBvZabqaWkoj5Hj5YyaBTD5aUDgtCexDVwwTNK");
+  const PROGRAM = new PublicKey(qs.get("program") || "BhFFu6Pt3WSpcXyVLqEttWja7LQddWrcZhvnEXwe5N6m");
   const CLUSTER = "devnet";
   const TOKEN_PROGRAM = new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA");
   const ATA_PROGRAM = new PublicKey("ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL");
-  const TERMS_MD = "# DONCOIN Terms of Use\n\nVersion 3.0 \u00b7 Effective 9 November 2026\n\nBy signing with your wallet you agree to these Terms. You must be at least 18 years old. You must sign before you play and again every 6 months. If you do not agree, do not use DONCOIN.\n\n## 1. DONCOIN is a game\n\nDONCOIN is purely a game for entertainment. DONCOIN tokens are game points. They are not a financial product of any kind: not an investment, a security, a currency, e-money, a deposit or a financial instrument. They give no right to profit, payment, ownership or anything else. Nobody promises that DONCOIN will ever have any value, price or market. Do not play expecting to make money.\n\n## 2. Playing costs money, and you will not get it back\n\nPlaying the game has costs, including Solana network fees, conversion fees paid in SOL and DONCOIN, and deposits for game accounts. You accept that you may lose all such costs, and you do not expect to get any of them back in any way. Any amount the game program returns, such as a deposit when an account is closed, is not guaranteed.\n\n## 3. You accept all risks and make no claims\n\nYou play entirely at your own risk. This includes loss of value, software errors, hacks, lost wallet keys, failure of Solana or other services the game uses, and changes in law. To the fullest extent the law allows, you give up all claims of any kind against the DONCOIN Parties, meaning DONCOIN, the founder of DONCOIN and everyone who builds or runs the game, and you will not bring any claim against them.\n\n## 4. The Founder's allocation\n\nYou understand and accept that the founder of DONCOIN (the Founder) is treated differently from players, as follows:\n\n1. The Founder's wallet is fixed when the game program is launched and can never be changed.\n2. The Founder has no activity requirement: the Founder does not check in and needs no identity verification.\n3. Every day the Founder counts as one participant when players' shares are calculated, which lowers each player's share.\n4. The per-player cap (1% of each day's issuance) does not apply to the Founder.\n5. Every day the Founder receives the remainder: the day's issuance minus everything settled to players for that day, including amounts cut by the per-player cap and player shares not settled within 30 days. With few players this can be most of each day's issuance.\n6. 80% of the remainder goes to the Founder, locked for 4 months like players' earnings. 20% goes to the Liquidity Vault at once.\n7. The Founder pays no conversion fees.\n8. The Founder must sign these Terms every 6 months like every player.\n9. The Founder receives no other allocation: no pre-mine, no sale proceeds and no share of fees.\n\n## 5. Game rules and the White Paper\n\nThe DONCOIN White Paper describes all rules of the game, including supply, issuance, rewards, invitations, the Founder's allocation, the Liquidity Vault and fees. The version published when you sign forms part of these Terms. Where the White Paper and the game program differ, the program decides.\n\n## Acknowledgement\n\nBY SIGNING, YOU CONFIRM THAT DONCOIN IS A GAME FOR ENTERTAINMENT ONLY, THAT YOU ACCEPT LOSING ALL COSTS OF PLAYING, THAT YOU ACCEPT THE FOUNDER'S ALLOCATION, AND THAT YOU MAKE NO CLAIMS AGAINST ANY DONCOIN PARTY.\n";
-  const TERMS_HASH = "ebcc7224848e1bd36b6ba3d66ed9725a8760e67035c0b4fb6d5df7ebe6a90fed";
+  const TERMS_MD = "# DONCOIN Terms of Use\n\nVersion 3.1 \u00b7 Effective 9 November 2026\n\nBy signing with your wallet you agree to these Terms. You must be at least 18 years old. You must sign before you play and again every 6 months. If you do not agree, do not use DONCOIN.\n\n## 1. DONCOIN is a game\n\nDONCOIN is purely a game for entertainment. DONCOIN tokens are game points. They are not a financial product of any kind: not an investment, a security, a currency, e-money, a deposit or a financial instrument. They give no right to profit, payment, ownership or anything else. Nobody promises that DONCOIN will ever have any value, price or market. Do not play expecting to make money.\n\n## 2. Playing costs money, and you will not get it back\n\nPlaying the game has costs, including Solana network fees, conversion fees paid in SOL and DONCOIN, and deposits for game accounts. You accept that you may lose all such costs, and you do not expect to get any of them back in any way. Any amount the game program returns, such as a deposit when an account is closed, is not guaranteed.\n\n## 3. You accept all risks and make no claims\n\nYou play entirely at your own risk. This includes loss of value, software errors, hacks, lost wallet keys, failure of Solana or other services the game uses, and changes in law. To the fullest extent the law allows, you give up all claims of any kind against the DONCOIN Parties, meaning DONCOIN, the founder of DONCOIN and everyone who builds or runs the game, and you will not bring any claim against them.\n\n## 4. The Founder's allocation\n\nYou understand and accept that the founder of DONCOIN (the Founder) is treated differently from players, as follows:\n\n1. The Founder's wallet is fixed when the game program is launched and can never be changed.\n2. The Founder has no activity requirement: the Founder does not check in and needs no identity verification.\n3. Every day the Founder counts as one participant when players' shares are calculated, which lowers each player's share.\n4. The per-player cap (1% of each day's issuance) does not apply to the Founder.\n5. Every day the Founder receives the remainder: the day's issuance minus everything settled to players for that day, including amounts cut by the per-player cap and player shares not settled within 30 days. With few players this can be most of each day's issuance.\n6. 80% of the remainder goes to the Founder, locked for 4 months like players' earnings. 20% goes to the Liquidity Vault at once.\n7. The Founder pays no conversion fees.\n8. The Founder must sign these Terms every 6 months like every player.\n9. The Founder receives no other allocation: no pre-mine, no sale proceeds and no share of fees.\n\n## 5. The Development Team's allocation\n\nYou understand and accept that the Development Team, whose wallet is fixed when the game program is launched and can never be changed, receives 650,000 DONCOIN (about 3.1% of the maximum supply) at launch, before any player has played. This allocation is credited in advance and taken from the start of the issuance schedule, so the first halving comes 34 days earlier (on day 514 instead of day 548). It is locked for 4 months like players' earnings. The Development Team does not check in, receives nothing else from the game and pays the normal conversion fees.\n\n## 6. Game rules and the White Paper\n\nThe DONCOIN White Paper describes all rules of the game, including supply, issuance, rewards, invitations, the Founder's and the Development Team's allocations, the Liquidity Vault and fees. The version published when you sign forms part of these Terms. Where the White Paper and the game program differ, the program decides.\n\n## Acknowledgement\n\nBY SIGNING, YOU CONFIRM THAT DONCOIN IS A GAME FOR ENTERTAINMENT ONLY, THAT YOU ACCEPT LOSING ALL COSTS OF PLAYING, THAT YOU ACCEPT THE FOUNDER'S AND THE DEVELOPMENT TEAM'S ALLOCATIONS, AND THAT YOU MAKE NO CLAIMS AGAINST ANY DONCOIN PARTY.\n";
+  const TERMS_HASH = "4041f63de7da6b6d2aa130107588562bc7ca7c057df098ca687fc62554620aa5";
   const LOGO = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 128 128\" role=\"img\" aria-label=\"DONCOIN\"><defs><linearGradient id=\"dg\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#F7D88A\"/><stop offset=\".5\" stop-color=\"#E2A53C\"/><stop offset=\"1\" stop-color=\"#B8761A\"/></linearGradient><radialGradient id=\"dc\" cx=\".35\" cy=\".3\" r=\".8\"><stop offset=\"0\" stop-color=\"#1D3D33\"/><stop offset=\"1\" stop-color=\"#0B1C17\"/></radialGradient></defs><circle cx=\"64\" cy=\"64\" r=\"63\" fill=\"url(#dg)\"/><g stroke=\"#7A4E0E\" stroke-width=\"2.2\" stroke-linecap=\"round\" opacity=\".55\"><line x1=\"64.00\" y1=\"7.00\" x2=\"64.00\" y2=\"3.50\"/><line x1=\"92.50\" y1=\"14.64\" x2=\"94.25\" y2=\"11.61\"/><line x1=\"113.36\" y1=\"35.50\" x2=\"116.39\" y2=\"33.75\"/><line x1=\"121.00\" y1=\"64.00\" x2=\"124.50\" y2=\"64.00\"/><line x1=\"113.36\" y1=\"92.50\" x2=\"116.39\" y2=\"94.25\"/><line x1=\"92.50\" y1=\"113.36\" x2=\"94.25\" y2=\"116.39\"/><line x1=\"64.00\" y1=\"121.00\" x2=\"64.00\" y2=\"124.50\"/><line x1=\"35.50\" y1=\"113.36\" x2=\"33.75\" y2=\"116.39\"/><line x1=\"14.64\" y1=\"92.50\" x2=\"11.61\" y2=\"94.25\"/><line x1=\"7.00\" y1=\"64.00\" x2=\"3.50\" y2=\"64.00\"/><line x1=\"14.64\" y1=\"35.50\" x2=\"11.61\" y2=\"33.75\"/><line x1=\"35.50\" y1=\"14.64\" x2=\"33.75\" y2=\"11.61\"/></g><circle cx=\"64\" cy=\"64\" r=\"53.5\" fill=\"url(#dc)\"/><circle cx=\"64\" cy=\"64\" r=\"53.5\" fill=\"none\" stroke=\"#F7D88A\" stroke-opacity=\".28\" stroke-width=\"1.2\"/><path d=\"M45 37 H61 A27 27 0 0 1 61 91 H45 Z\" fill=\"none\" stroke=\"url(#dg)\" stroke-width=\"10\" stroke-linejoin=\"round\"/><circle cx=\"61\" cy=\"64\" r=\"8.5\" fill=\"url(#dg)\"/></svg>";
-  const ONE = 1000000000n, FIRST = 10500000n * ONE, PERIOD = 548, DAY_S = 86400, MONTH_S = 2629800, LOCK = 4, TERMS_DAYS = 182, SETTLE_WINDOW = 30;
+  const ONE = 1000000000n, FIRST = 10500000n * ONE, PERIOD = 548, OFFSET = 34, DAY_S = 86400, MONTH_S = 2629800, LOCK = 4, TERMS_DAYS = 182, SETTLE_WINDOW = 30;
   const conn = new Connection(RPC, "confirmed");
   const enc = new TextEncoder();
   const $ = (id) => document.getElementById(id);
@@ -147,7 +147,7 @@ footer{max-width:1240px;margin:0 auto;padding:0 24px 32px;display:flex;flex-wrap
   const userPda = (w) => pda(enc.encode("user"), w.toBytes());
   const dayPda = (d) => pda(enc.encode("day"), u32(d));
   const invitePda = (h) => pda(enc.encode("invite"), h);
-  const emission = (day) => { const p = BigInt(Math.floor(day / PERIOD)); return p > 63n ? 0n : (FIRST >> p) / BigInt(PERIOD); };
+  const emission = (day) => { const p = BigInt(Math.floor((day + OFFSET) / PERIOD)); return p > 63n ? 0n : (FIRST >> p) / BigInt(PERIOD); };
   const fmt = (x, dp = 2) => { const neg = x < 0n; if (neg) x = -x; const w = x / ONE, f = ((x % ONE) * 10n ** BigInt(dp)) / ONE; return (neg ? "-" : "") + w.toLocaleString("en-US") + (dp ? "." + f.toString().padStart(dp, "0") : ""); };
   const short = (k) => { const s = k.toString(); return s.slice(0, 4) + "…" + s.slice(-4); };
   const explorer = (k, type = "address") => "https://explorer.solana.com/" + type + "/" + k + "?cluster=" + CLUSTER;
@@ -164,9 +164,13 @@ footer{max-width:1240px;margin:0 auto;padding:0 24px 32px;display:flex;flex-wrap
   }
   function readConfig(d) {
     const r = new R(d);
-    return { admin: r.key(), frozen: r.bool(), mint: r.key(), gatekeeper: r.key(), genesis: Number(r.i64()), capBps: r.u16(), feeBps: r.u16(), solFee: r.u64(),
+    const base = { admin: r.key(), frozen: r.bool(), mint: r.key(), gatekeeper: r.key(), genesis: Number(r.i64()), capBps: r.u16(), feeBps: r.u16(), solFee: r.u64(),
       totalCredited: r.u64(), totalConverted: r.u64(), totalUsers: r.u64(), termsHash: hex(r.bytes(32)), founder: r.key(), founderNextDay: r.u32(),
       founderCredited: r.u64(), poolMinSol: r.u64(), poolStartPrice: r.u64(), poolAmmConfig: r.key(), vaultReady: r.bool(), poolState: r.key() };
+    // Later fields; devTeam was added at the end of Config (older programs do not have it).
+    const c = base;
+    try { r.u64(); r.u64(); r.u64(); r.u64(); r.u64(); r.u32(); r.i64(); r.u8(); r.u8(); r.u8(); if (r.o + 32 <= d.length) c.devTeam = r.key(); } catch (e) {}
+    return c;
   }
   function readUser(d) {
     const r = new R(d);
@@ -226,6 +230,7 @@ footer{max-width:1240px;margin:0 auto;padding:0 24px 32px;display:flex;flex-wrap
   }
   const termsValid = () => user && user.termsHash === config.termsHash && today < user.termsDay + TERMS_DAYS;
   const isFounder = () => wallet && config && wallet.pubkey.equals(config.founder);
+  const isDev = () => !!(wallet && config && config.devTeam && wallet.pubkey.equals(config.devTeam));
 
   // ---------- transactions ----------
   async function send(ixs, okText) {
@@ -309,7 +314,7 @@ footer{max-width:1240px;margin:0 auto;padding:0 24px 32px;display:flex;flex-wrap
   }
   function renderLocked() {
     const had = user && user.termsHash !== "0".repeat(64);
-    $("main").innerHTML = '<div class="center">' + LOGO + "<h1>" + (had ? "Your Terms signature has expired" : "Sign the Terms of Use") + '</h1><p class="muted">Check-ins, invitations and conversions are refused until you sign the current Terms of Use v3.0. The signature is renewed every 6 months.</p><button class="primary big" data-a="terms">Read and sign the Terms</button></div>';
+    $("main").innerHTML = '<div class="center">' + LOGO + "<h1>" + (had ? "Your Terms signature has expired" : "Sign the Terms of Use") + '</h1><p class="muted">Check-ins, invitations and conversions are refused until you sign the current Terms of Use v3.1. The signature is renewed every 6 months.</p><button class="primary big" data-a="terms">Read and sign the Terms</button></div>';
   }
   function renderHome() {
     const e = emission(today), cap = (e * BigInt(config.capBps)) / 10000n;
@@ -319,8 +324,9 @@ footer{max-width:1240px;margin:0 auto;padding:0 24px 32px;display:flex;flex-wrap
     let est = (e * BigInt(pts)) / total; if (est > cap) est = cap;
     const bal = balances();
     const fee = isFounder() ? 0n : (bal.unlocked * BigInt(config.feeBps)) / 10000n;
-    const nextHalving = (Math.floor(today / PERIOD) + 1) * PERIOD - today;
-    const founderNote = isFounder() ? '<div class="notice info">Founder account: no daily check-in. Your remainder is settled automatically after each day\'s 30-day window.</div>' : "";
+    const nextHalving = (Math.floor((today + OFFSET) / PERIOD) + 1) * PERIOD - (today + OFFSET);
+    const founderNote = isFounder() ? '<div class="notice info">Founder account: no daily check-in. Your remainder is settled automatically after each day\'s 30-day window.</div>'
+      : isDev() ? '<div class="notice info">Development Team account: no daily check-in. The 650,000 DON allocation was credited at launch and unlocks in month 4, like all earnings. Normal conversion fees apply.</div>' : "";
     const invTable = myInvites.map((i) => {
       const a = i.acct; const st = !a ? '<span class="chip neutral">Closed</span>' : a.used ? '<span class="chip ok">Used</span>' : today > a.expires ? '<span class="chip neutral">Expired</span>' : '<span class="chip gold">Open until day ' + a.expires + "</span>";
       return '<tr><td class="mono small">' + esc(i.code) + "</td><td>" + st + "</td></tr>";
@@ -328,8 +334,8 @@ footer{max-width:1240px;margin:0 auto;padding:0 24px 32px;display:flex;flex-wrap
     const openCode = (myInvites.find((i) => i.acct && !i.acct.used && today <= i.acct.expires) || {}).code;
     const link = openCode ? location.origin + location.pathname + location.search + "#join-" + openCode : "";
     $("main").innerHTML =
-      (isFounder() ? founderNote :
-      '<section class="hero" aria-labelledby="h1"><div class="l"><span class="kicker">Day ' + today + " · Period " + (Math.floor(today / PERIOD) + 1) + "</span>" +
+      (isFounder() || isDev() ? founderNote :
+      '<section class="hero" aria-labelledby="h1"><div class="l"><span class="kicker">Day ' + today + " · Period " + (Math.floor((today + OFFSET) / PERIOD) + 1) + "</span>" +
         (checked ? '<h1 id="h1">You’re in for today</h1><p class="sub">Your share is settled with your next check-in and locked for 4 months.</p>'
                  : '<h1 id="h1">You haven’t checked in today</h1><p class="sub">One signed transaction counts you in for today’s share of ' + fmt(e, 0) + " DON.</p>") +
         '<div class="row"><span class="pill gold">' + user.activeDays + (user.activeDays === 1 ? ' active day' : ' active days') + '</span><span class="pill">' + dayAcct.totalPoints.toString() + (dayAcct.totalPoints === 1n ? ' player' : ' players') + " checked in so far</span></div></div>" +
@@ -344,7 +350,7 @@ footer{max-width:1240px;margin:0 auto;padding:0 24px 32px;display:flex;flex-wrap
           bal.rows.map((b) => "<tr><td>Month " + b.month + '</td><td class="r mono">' + fmt(b.amount) + '</td><td><span class="chip warn">Day ' + monthStartDay(b.month + LOCK) + "</span></td></tr>").join("") + "</tbody></table>" : '<p class="small muted">No locked earnings yet. Earnings appear here the day after a check-in.</p>') +
         "</section></div>" +
       '<div class="cr">' +
-        (isFounder() ? "" : '<section class="card" aria-labelledby="h-inv"><div class="head"><h2 id="h-inv">Invite a friend</h2></div>' +
+        (isFounder() || isDev() ? "" : '<section class="card" aria-labelledby="h-inv"><div class="head"><h2 id="h-inv">Invite a friend</h2></div>' +
           (openCode ? '<div><div class="small muted">Your code · single use · 14 days</div><div class="mono" style="font-size:20px;letter-spacing:.06em">' + esc(openCode) + '</div></div><div class="row"><button data-a="copy" data-t="' + esc(openCode) + '">Copy code</button><button data-a="copy" data-t="' + esc(link) + '">Copy link</button></div>' : "") +
           '<button data-a="invite">' + (openCode ? "New code" : "Create invitation code") + '</button><p class="small muted">You both get +10 points when your friend reaches 30 active days. Deposit about 0.0051 SOL per code.</p>' +
           (invTable ? "<table><tbody>" + invTable + "</tbody></table>" : "") +
@@ -370,7 +376,7 @@ footer{max-width:1240px;margin:0 auto;padding:0 24px 32px;display:flex;flex-wrap
   }
   function openTerms(mode, code) {
     tMode = mode; tCode = code || ""; scrolled = mode === "view";
-    $("tsub").textContent = "Version 3.0" + (wallet && mode !== "view" ? " · signing as " + short(wallet.pubkey) : "");
+    $("tsub").textContent = "Version 3.1" + (wallet && mode !== "view" ? " · signing as " + short(wallet.pubkey) : "");
     $("tb").innerHTML = mdToHtml(TERMS_MD); $("tb").scrollTop = 0; termsFoot(); $("tm").hidden = false; checkScroll();
   }
   function termsFoot() {
