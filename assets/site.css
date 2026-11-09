@@ -185,3 +185,9 @@ footer .legal{grid-column:1/-1;border-top:1px solid #23413a;padding-top:20px;fon
 .prose .ack{font-weight:700;letter-spacing:.01em;background:var(--surface);border:1px solid var(--line);padding:18px;border-radius:10px}
 @media (max-width:900px){.doc{grid-template-columns:1fr}.toc{position:static}}
 @media print{.nav,.riskbar,footer,.toc{display:none}.doc{display:block}.doc-hero{background:none;color:#000}}
+
+.split-table{margin-top:6px}
+.split-table td{white-space:nowrap}
+.mini{display:inline-block;width:70px;height:8px;border-radius:4px;background:#e4ded0;vertical-align:middle;margin-right:6px;overflow:hidden}
+.mini i{display:block;height:100%;background:var(--goldDeep);border-radius:4px 0 0 4px}
+@media (max-width:540px){.split-table td{white-space:normal}.mini{display:none}}
