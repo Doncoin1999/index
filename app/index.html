@@ -311,6 +311,28 @@ footer{max-width:1240px;margin:0 auto;padding:0 24px 32px;display:flex;flex-wrap
     if (!wallet || !user || isFounder() || isDev() || device.wallet) return;
     device.wallet = wallet.pubkey.toBase58(); await deviceSave();
   }
+  // Private/incognito windows forget the code above when they close, so new accounts are refused there.
+  // Browsers hide private mode on purpose; these are the usual signs (same as the open-source detectIncognito).
+  // Only registration is refused: existing players can always play, so a wrong guess never locks anyone out.
+  let privateMode = false;
+  async function detectPrivate() {
+    try {
+      const ua = navigator.userAgent, isFirefox = /Firefox\//.test(ua), isSafari = /Safari\//.test(ua) && !/Chrome|Chromium|Edg\//.test(ua);
+      if (isFirefox || isSafari) {
+        if (navigator.storage && typeof navigator.storage.getDirectory === "function") {
+          try { await navigator.storage.getDirectory(); return false; }
+          catch (e) { const m = String((e && e.message) || e); return isFirefox ? m.includes("Security error") : m.includes("unknown transient reason"); }
+        }
+        return isFirefox ? navigator.serviceWorker === undefined : false;
+      }
+      // Chromium (Chrome, Edge, Brave, Opera): private windows get a small, memory-sized storage quota.
+      const limit = (performance && performance.memory && performance.memory.jsHeapSizeLimit) || 1073741824;
+      let quota = 0;
+      if (navigator.webkitTemporaryStorage) quota = await new Promise((res) => navigator.webkitTemporaryStorage.queryUsageAndQuota((_, q) => res(q), () => res(0)));
+      else if (navigator.storage && navigator.storage.estimate) quota = (await navigator.storage.estimate()).quota || 0;
+      return quota > 0 && quota < limit * 2;
+    } catch (e) { return false; }
+  }
   const deviceTaken = () => !!(wallet && device.wallet && device.wallet !== wallet.pubkey.toBase58());
 
   // ---------- derived numbers ----------
@@ -347,6 +369,12 @@ footer{max-width:1240px;margin:0 auto;padding:0 24px 32px;display:flex;flex-wrap
       $("main").innerHTML = '<div class="center">' + LOGO + '<h1>This computer already has a DONCOIN account</h1>' +
         '<p class="muted">DONCOIN allows one account per computer. This computer is used by the account <span class="mono">' + esc(short(new PublicKey(device.wallet))) + '</span>. Connect that wallet to play.</p>' +
         '<button class="big" data-a="disconnect">Use another wallet</button></div>';
+      return;
+    }
+    if (privateMode) {
+      $("main").innerHTML = '<div class="center">' + LOGO + '<h1>Open DONCOIN in a normal window</h1>' +
+        '<p class="muted">New accounts cannot be created in a private or incognito window, because DONCOIN allows one account per computer. Open doncoin.app/app in a normal browser window to register.</p>' +
+        '<button class="big" data-a="disconnect">Disconnect</button></div>';
       return;
     }
     const code = (location.hash.match(/^#join-([A-Za-z0-9-]+)$/) || [])[1] || "";
@@ -451,13 +479,13 @@ footer{max-width:1240px;margin:0 auto;padding:0 24px 32px;display:flex;flex-wrap
     else if (a === "test-wallet") { wallet = testWallet(); localStorage.setItem("doncoin-wallet", "test"); await refresh(); }
     else if (a === "disconnect") { wallet = null; localStorage.removeItem("doncoin-wallet"); try { phantom() && phantom().disconnect(); } catch (e) {} render(); }
     else if (a === "copy-addr" || a === "copy") { const t = a === "copy" ? b.dataset.t : wallet.pubkey.toBase58(); try { await navigator.clipboard.writeText(t); toast("Copied: " + t, "ok"); } catch (e) { toast(t, "ok"); } }
-    else if (a === "register") { if (deviceTaken()) return render(); openTerms("register", ($("code").value || "").trim().toUpperCase()); }
+    else if (a === "register") { if (deviceTaken() || privateMode) return render(); openTerms("register", ($("code").value || "").trim().toUpperCase()); }
     else if (a === "terms") openTerms("sign");
     else if (a === "view-terms") openTerms("view");
     else if (a === "tclose") { $("tm").hidden = true; }
     else if (a === "tsign") {
       $("tm").hidden = true;
-      if (tMode === "register") { await deviceLoad(); if (deviceTaken()) { render(); return; } await send([await ixRegister(tCode || null)], "Registered and Terms signed. Welcome to DONCOIN!"); }
+      if (tMode === "register") { await deviceLoad(); if (deviceTaken() || privateMode) { render(); return; } await send([await ixRegister(tCode || null)], "Registered and Terms signed. Welcome to DONCOIN!"); }
       else await send([await ixTerms()], "Terms signed. Valid for 6 months.");
     }
     else if (a === "checkin") { const ixs = []; for (const e of unsettled()) ixs.push(await ixSettle(e.day)); ixs.push(await ixCheckIn(today)); await send(ixs, "Checked in for day " + today + "."); }
@@ -470,6 +498,7 @@ footer{max-width:1240px;margin:0 auto;padding:0 24px 32px;display:flex;flex-wrap
   const t = await sha256(enc.encode(TERMS_MD));
   if (hex(t) !== TERMS_HASH) console.warn("Terms text does not match its fingerprint");
   await deviceLoad();
+  privateMode = await detectPrivate();
   const last = localStorage.getItem("doncoin-wallet");
   if (last === "test") wallet = testWallet();
   else if (last === "phantom" && phantom()) { try { const r = await phantom().connect({ onlyIfTrusted: true }); wallet = { pubkey: new PublicKey(r.publicKey.toString()), label: "Phantom", sign: (tx) => phantom().signTransaction(tx) }; } catch (e) {} }
