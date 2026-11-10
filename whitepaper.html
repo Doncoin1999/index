@@ -123,10 +123,10 @@
   <li><b>The remainder.</b> For each day: remainder = day's issuance − everything settled to players for that day. It includes amounts cut by the 1% cap and any player shares not settled within 30 days.</li>
   <li><b>When it is settled.</b> A day's remainder is settled only after its 30-day settlement window closes, one day at a time in order. Anyone can trigger this; old day records cannot be closed until it is done.</li>
   <li><b>The 80/20 split.</b> 80% is credited to the Founder's account and locked for 4 months like all player earnings. 20% is issued at once as DON to the Liquidity Vault (section 6), with no lock.</li>
-  <li><b>No fees.</b> The Founder pays no conversion fee in DON or SOL.</li>
+  <li><b>Fees.</b> The Founder pays no conversion fee in DON or SOL. The Founder receives half of the DON part of every conversion fee paid by others (1.5% of the converted DON at the current 3% fee), unlocked; the other half and the SOL fee go to the Liquidity Vault.</li>
   <li><b>Same Terms.</b> The Founder must sign the Terms of Use every 6 months like every player, and cannot convert without a valid signature.</li>
   <li><b>Account cannot be closed.</b> The Founder account stays open so that remainders can always be settled.</li>
-  <li><b>No other allocation.</b> The Founder receives nothing else: no pre-mine, no sale proceeds, no share of fees.</li>
+  <li><b>No other allocation.</b> The Founder receives nothing else: no pre-mine and no sale proceeds.</li>
 </ol>
 <table>
   <thead><tr><th>Other players checking in</th><th class="n">Remainder per day</th><th class="n">Founder (80%)</th><th class="n">Liquidity Vault (20%)</th></tr></thead>
@@ -147,14 +147,14 @@
   <li><b>650,000 DON in advance.</b> At launch the program credits 650,000 DON (about 3.1% of the maximum supply) to the Development Team's account, before any player has played.</li>
   <li><b>Taken from the schedule.</b> The allocation replaces the first 34 days of the issuance schedule, so the total stays within 21,000,000 DON and the first halving comes on day 514 (17 April 2028) instead of day 548 (section 2).</li>
   <li><b>Locked like everyone else.</b> The allocation is locked for 4 months and can be converted from month 4 (about 21 March 2027).</li>
-  <li><b>No check-ins, normal fees.</b> The Development Team does not check in, pays the normal conversion fees to the Liquidity Vault, and must sign the Terms of Use every 6 months.</li>
+  <li><b>No check-ins, normal fees.</b> The Development Team does not check in, pays the normal conversion fees (split between the Liquidity Vault and the Founder), and must sign the Terms of Use every 6 months.</li>
   <li><b>Nothing else.</b> The Development Team receives no daily share, no part of the Founder remainder, no sale proceeds and no share of fees.</li>
 </ol>
 
 <h2 id="vault">6. Liquidity Vault and pool</h2>
 <p>The Liquidity Vault is a program account with no private key. It collects fees and the 20% remainder share, and its only possible use is to add DON and SOL in pairs to one trading pool on Raydium, where its position is locked forever.</p>
 <ul>
-  <li><b>What goes in:</b> players' conversion fees (3% of converted DON plus 0.003 SOL per conversion) and 20% of every Founder remainder.</li>
+  <li><b>What goes in:</b> half of every DON conversion fee (1.5% of converted DON), the 0.003 SOL fee per conversion, and 20% of every Founder remainder.</li>
   <li><b>What can come out:</b> nothing, except paired deposits into the pool. The Vault cannot sell DON, pay anyone, or withdraw its pool position. Nobody, including the Founder, can move its funds.</li>
   <li><b>When the pool opens:</b> at the earliest in month 4 (from about 21 March 2027), when the first player earnings unlock, and only once the Vault has at least 10 SOL available on top of a 1 SOL reserve for Raydium's costs.</li>
   <li><b>Opening price:</b> the pool opens at a start price set when the program is launched [START PRICE, SOL PER DON]. The Vault uses its available SOL and only as much DON as matches that price; the rest waits.</li>
@@ -165,13 +165,13 @@
 <p>A pool does not guarantee any price or that DON can be sold. Prices are set by trading between other people.</p>
 
 <h2 id="fees">7. Fees and costs for players</h2>
-<p>A daily player who converts once a month pays about 0.0032 SOL a month in fees and network costs, plus 3% of the DON they convert. None of it goes to the Founder: network fees go to Solana validators and conversion fees go to the Liquidity Vault.</p>
+<p>A daily player who converts once a month pays about 0.0032 SOL a month in fees and network costs, plus 3% of the DON they convert. Network fees go to Solana validators. The DON conversion fee is split equally between the Liquidity Vault and the Founder, and the SOL fee goes to the Liquidity Vault.</p>
 <table>
   <thead><tr><th>Cost</th><th>Amount</th><th>When</th><th>Goes to</th><th>Returned?</th></tr></thead>
   <tbody>
     <tr><td>Account deposit</td><td>≈ 0.0098 SOL</td><td>Registration</td><td>Held in your game account</td><td>When the account is closed, if the program works as intended</td></tr>
     <tr><td>Daily check-in</td><td>≈ 0.000005 SOL</td><td>Every day</td><td>Solana validators</td><td>No</td></tr>
-    <tr><td>Conversion fee</td><td>3% of DON converted + 0.003 SOL</td><td>Each conversion</td><td>Liquidity Vault</td><td>No</td></tr>
+    <tr><td>Conversion fee</td><td>3% of DON converted + 0.003 SOL</td><td>Each conversion</td><td>Liquidity Vault (1.5% + 0.003 SOL) and Founder (1.5%)</td><td>No</td></tr>
     <tr><td>DON token account</td><td>≈ 0.002 SOL</td><td>First conversion</td><td>Your wallet's token account</td><td>If you close it</td></tr>
     <tr><td>Invitation deposit</td><td>≈ 0.0051 SOL per code</td><td>Creating a code</td><td>Held in the invitation record</td><td>When the code is closed</td></tr>
     <tr><td>Terms signature</td><td>≈ 0.000005 SOL</td><td>Every 6 months</td><td>Solana validators</td><td>No</td></tr>
@@ -191,6 +191,7 @@
     <tr><td>Vault can only add paired liquidity; pool position locked</td><td>Never</td></tr>
     <tr><td>Per-player cap (default 1%)</td><td>Before freeze, up to 100%</td></tr>
     <tr><td>Conversion fees (default 3% + 0.003 SOL)</td><td>Before freeze, max 3% and 0.01 SOL</td></tr>
+    <tr><td>Equal split of the DON fee between Vault and Founder</td><td>Never</td></tr>
     <tr><td>Pool threshold, start price, Raydium fee tier</td><td>Before freeze and only until the pool exists</td></tr>
     <tr><td>Terms of Use version</td><td>Before freeze; players must then sign the new version</td></tr>
     <tr><td>Optional Civic identity check (off at launch)</td><td>Can be switched on before freeze</td></tr>
