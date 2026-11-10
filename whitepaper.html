@@ -50,7 +50,7 @@
 <p>A player needs a Solana wallet with a little SOL and a computer (Windows or Mac) with a supported browser. The game runs in the DONCOIN web app and on the DONCOIN program on Solana; nobody holds players' keys or funds.</p>
 <ol>
   <li><b>Connect a wallet</b> (for example Phantom in Chrome).</li>
-  <li><b>Pass a CAPTCHA check</b> with Civic, which keeps automated bots out. The pass is valid for 30 days and is renewed the next time you connect.</li>
+  <li><b>One account per computer.</b> The app links your computer to the wallet you register with and refuses a second new account on the same computer.</li>
   <li><b>Sign the Terms of Use</b> with the wallet and pay a refundable account deposit (about 0.0098 SOL).</li>
   <li><b>Check in once a day.</b> Each check-in earns points for that day.</li>
   <li><b>Earn a share of the day's issuance.</b> After the day ends, your share is settled and locked.</li>
@@ -117,7 +117,7 @@
 <h3>The rules, as the program applies them</h3>
 <ol>
   <li><b>One fixed wallet.</b> The Founder's wallet address is set when the program is launched and can never be changed. The wallet is created outside the program; its address and balance are public on Solana.</li>
-  <li><b>No activity requirement.</b> The Founder does not check in and needs no Civic verification. The program refuses check-ins from the Founder wallet.</li>
+  <li><b>No activity requirement.</b> The Founder does not check in. The program refuses check-ins from the Founder wallet.</li>
   <li><b>Counts as one participant.</b> Every day the Founder counts as 1 point when players' shares are calculated, which lowers each player's share slightly.</li>
   <li><b>No cap.</b> The 1% per-person cap does not apply to the Founder.</li>
   <li><b>The remainder.</b> For each day: remainder = day's issuance − everything settled to players for that day. It includes amounts cut by the 1% cap and any player shares not settled within 30 days.</li>
@@ -165,7 +165,7 @@
 <p>A pool does not guarantee any price or that DON can be sold. Prices are set by trading between other people.</p>
 
 <h2 id="fees">7. Fees and costs for players</h2>
-<p>A daily player who converts once a month pays about 0.0032 SOL a month in fees and network costs, plus 3% of the DON they convert, plus Civic's CAPTCHA pass (about USD 0.05 in SOL every 30 days, paid to Civic). None of it goes to the Founder: network fees go to Solana validators, the pass fee goes to Civic and conversion fees go to the Liquidity Vault.</p>
+<p>A daily player who converts once a month pays about 0.0032 SOL a month in fees and network costs, plus 3% of the DON they convert. None of it goes to the Founder: network fees go to Solana validators and conversion fees go to the Liquidity Vault.</p>
 <table>
   <thead><tr><th>Cost</th><th>Amount</th><th>When</th><th>Goes to</th><th>Returned?</th></tr></thead>
   <tbody>
@@ -177,7 +177,7 @@
     <tr><td>Terms signature</td><td>≈ 0.000005 SOL</td><td>Every 6 months</td><td>Solana validators</td><td>No</td></tr>
   </tbody>
 </table>
-<p>The DON fee can never exceed 3% and the SOL fee can never exceed 0.01 SOL. Civic sets its own pass price, and Solana may add priority fees when the network is busy. A CAPTCHA check stops automated bots, but it cannot stop one person from running several wallets; the 1% cap applies per account. Players should accept that they may lose all costs of playing.</p>
+<p>The DON fee can never exceed 3% and the SOL fee can never exceed 0.01 SOL. Solana may add priority fees when the network is busy. Players should accept that they may lose all costs of playing.</p>
 
 <h2 id="change">8. What can and cannot change</h2>
 <p>The supply, issuance schedule, lock period, Founder rules and Vault rules are fixed in the program. An administrator can adjust a few parameters within hard limits until the program is frozen; after that nothing can be changed. "Never" below holds fully once the right to upgrade the program has been removed; until then an upgrade could change any rule.</p>
@@ -193,7 +193,7 @@
     <tr><td>Conversion fees (default 3% + 0.003 SOL)</td><td>Before freeze, max 3% and 0.01 SOL</td></tr>
     <tr><td>Pool threshold, start price, Raydium fee tier</td><td>Before freeze and only until the pool exists</td></tr>
     <tr><td>Terms of Use version</td><td>Before freeze; players must then sign the new version</td></tr>
-    <tr><td>Identity verification network (Civic)</td><td>Before freeze</td></tr>
+    <tr><td>Optional Civic identity check (off at launch)</td><td>Can be switched on before freeze</td></tr>
   </tbody>
 </table>
 <p><b>Freeze:</b> the administrator permanently removes itself, and all parameters are locked. <b>Program upgrades:</b> from launch on 20 November 2026 until the freeze, the Founder holds both the administrator right and the right to upgrade the program, in a dedicated wallet, separate from the Founder's allocation wallet. The settings are frozen and the upgrade right is removed for good, making the program immutable, on 21 May 2027 or later, once all of the following have worked on mainnet: the Liquidity Vault has opened the pool and added liquidity, players have converted unlocked earnings, and at least one referral bonus has been paid. Until then, any fault can still be repaired with a program upgrade. Both steps are public on-chain transactions that anyone can verify.</p>
@@ -202,7 +202,8 @@
 <p>DONCOIN is purely a game for entertainment, not a financial product of any kind. Every player, including the Founder, must sign the <a href="terms.html">Terms of Use</a> with their wallet before playing and again every 6 months; this White Paper forms part of those Terms.</p>
 <ul>
   <li><b>Signing:</b> the signature stores a fingerprint (SHA-256) of the exact Terms text and the date on-chain. The program refuses check-ins, invitations and conversions without a valid signature, also for anyone who bypasses the app.</li>
-  <li><b>Risks:</b> DON may never have any value, price or market. Players may lose all costs of playing. Software errors, hacks, lost wallet keys, failures of Solana, Civic or Raydium, and changes in law can all cause losses. Players accept all these risks and make no claims against the DONCOIN parties.</li>
+  <li><b>One account per computer:</b> the app keeps a random code on the player's computer, linked to the wallet that registered there, and refuses a new account on a computer that already has one. The code never leaves the computer. Anyone who clears it or bypasses the app can still create more accounts, so the 1% cap applies per account.</li>
+  <li><b>Risks:</b> DON may never have any value, price or market. Players may lose all costs of playing. Software errors, hacks, lost wallet keys, failures of Solana or Raydium, and changes in law can all cause losses. Players accept all these risks and make no claims against the DONCOIN parties.</li>
   <li><b>Status:</b> the program has been tested on Solana's devnet test network. An independent security audit is planned after launch and before the pool can open in month 4; until the audit is published, treat the software as unaudited. Numbers in this paper follow the program's current code.</li>
   <li><b>Launch and addresses:</b> operator DONCOIN. Launch 20 November 2026 at 00:00 UTC. The program address and the DON token address will be published here, on doncoin.app and in the app before launch; only DON at that address is real DONCOIN.</li>
 </ul>

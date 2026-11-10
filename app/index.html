@@ -82,7 +82,7 @@ footer{max-width:1240px;margin:0 auto;padding:0 24px 32px;display:flex;flex-wrap
 <footer>
   <span>DONCOIN is purely a game for entertainment, not a financial product of any kind.</span>
   <span>Official DON token address: <a class="mono" id="tokenlink" target="_blank" rel="noopener"></a></span>
-  <span class="row"><a href="#" data-a="view-terms">Terms of Use v3.1</a><a href="#" data-a="disconnect" id="disc" hidden>Disconnect</a></span>
+  <span class="row"><a href="#" data-a="view-terms">Terms of Use v3.2</a><a href="#" data-a="disconnect" id="disc" hidden>Disconnect</a></span>
 </footer>
 <div class="modal" id="tm" hidden role="dialog" aria-modal="true" aria-labelledby="tt">
   <div class="sheet"><div class="sh"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="DONCOIN"><defs><linearGradient id="dg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F7D88A"/><stop offset=".5" stop-color="#E2A53C"/><stop offset="1" stop-color="#B8761A"/></linearGradient><radialGradient id="dc" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#1D3D33"/><stop offset="1" stop-color="#0B1C17"/></radialGradient></defs><circle cx="64" cy="64" r="63" fill="url(#dg)"/><g stroke="#7A4E0E" stroke-width="2.2" stroke-linecap="round" opacity=".55"><line x1="64.00" y1="7.00" x2="64.00" y2="3.50"/><line x1="92.50" y1="14.64" x2="94.25" y2="11.61"/><line x1="113.36" y1="35.50" x2="116.39" y2="33.75"/><line x1="121.00" y1="64.00" x2="124.50" y2="64.00"/><line x1="113.36" y1="92.50" x2="116.39" y2="94.25"/><line x1="92.50" y1="113.36" x2="94.25" y2="116.39"/><line x1="64.00" y1="121.00" x2="64.00" y2="124.50"/><line x1="35.50" y1="113.36" x2="33.75" y2="116.39"/><line x1="14.64" y1="92.50" x2="11.61" y2="94.25"/><line x1="7.00" y1="64.00" x2="3.50" y2="64.00"/><line x1="14.64" y1="35.50" x2="11.61" y2="33.75"/><line x1="35.50" y1="14.64" x2="33.75" y2="11.61"/></g><circle cx="64" cy="64" r="53.5" fill="url(#dc)"/><circle cx="64" cy="64" r="53.5" fill="none" stroke="#F7D88A" stroke-opacity=".28" stroke-width="1.2"/><path d="M45 37 H61 A27 27 0 0 1 61 91 H45 Z" fill="none" stroke="url(#dg)" stroke-width="10" stroke-linejoin="round"/><circle cx="61" cy="64" r="8.5" fill="url(#dg)"/></svg><div><h2 id="tt">DONCOIN Terms of Use</h2><p class="small" style="color:#bcd0c6" id="tsub"></p></div></div>
@@ -122,8 +122,8 @@ footer{max-width:1240px;margin:0 auto;padding:0 24px 32px;display:flex;flex-wrap
   const CLUSTER = "devnet";
   const TOKEN_PROGRAM = new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA");
   const ATA_PROGRAM = new PublicKey("ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL");
-  const TERMS_MD = "# DONCOIN Terms of Use\n\nVersion 3.1 \u00b7 Effective 9 November 2026\n\nBy signing with your wallet you agree to these Terms. You must be at least 18 years old. You must sign before you play and again every 6 months. If you do not agree, do not use DONCOIN.\n\n## 1. DONCOIN is a game\n\nDONCOIN is purely a game for entertainment. DONCOIN tokens are game points. They are not a financial product of any kind: not an investment, a security, a currency, e-money, a deposit or a financial instrument. They give no right to profit, payment, ownership or anything else. Nobody promises that DONCOIN will ever have any value, price or market. Do not play expecting to make money.\n\n## 2. Playing costs money, and you will not get it back\n\nPlaying the game has costs, including Solana network fees, conversion fees paid in SOL and DONCOIN, and deposits for game accounts. You accept that you may lose all such costs, and you do not expect to get any of them back in any way. Any amount the game program returns, such as a deposit when an account is closed, is not guaranteed.\n\n## 3. You accept all risks and make no claims\n\nYou play entirely at your own risk. This includes loss of value, software errors, hacks, lost wallet keys, failure of Solana or other services the game uses, and changes in law. To the fullest extent the law allows, you give up all claims of any kind against the DONCOIN Parties, meaning DONCOIN, the founder of DONCOIN and everyone who builds or runs the game, and you will not bring any claim against them.\n\n## 4. The Founder's allocation\n\nYou understand and accept that the founder of DONCOIN (the Founder) is treated differently from players, as follows:\n\n1. The Founder's wallet is fixed when the game program is launched and can never be changed.\n2. The Founder has no activity requirement: the Founder does not check in and needs no identity verification.\n3. Every day the Founder counts as one participant when players' shares are calculated, which lowers each player's share.\n4. The per-player cap (1% of each day's issuance) does not apply to the Founder.\n5. Every day the Founder receives the remainder: the day's issuance minus everything settled to players for that day, including amounts cut by the per-player cap and player shares not settled within 30 days. With few players this can be most of each day's issuance.\n6. 80% of the remainder goes to the Founder, locked for 4 months like players' earnings. 20% goes to the Liquidity Vault at once.\n7. The Founder pays no conversion fees.\n8. The Founder must sign these Terms every 6 months like every player.\n9. The Founder receives no other allocation: no pre-mine, no sale proceeds and no share of fees.\n\n## 5. The Development Team's allocation\n\nYou understand and accept that the Development Team, whose wallet is fixed when the game program is launched and can never be changed, receives 650,000 DONCOIN (about 3.1% of the maximum supply) at launch, before any player has played. This allocation is credited in advance and taken from the start of the issuance schedule, so the first halving comes 34 days earlier (on day 514 instead of day 548). It is locked for 4 months like players' earnings. The Development Team does not check in, receives nothing else from the game and pays the normal conversion fees.\n\n## 6. Game rules and the White Paper\n\nThe DONCOIN White Paper describes all rules of the game, including supply, issuance, rewards, invitations, the Founder's and the Development Team's allocations, the Liquidity Vault and fees. The version published when you sign forms part of these Terms. Where the White Paper and the game program differ, the program decides.\n\n## Acknowledgement\n\nBY SIGNING, YOU CONFIRM THAT DONCOIN IS A GAME FOR ENTERTAINMENT ONLY, THAT YOU ACCEPT LOSING ALL COSTS OF PLAYING, THAT YOU ACCEPT THE FOUNDER'S AND THE DEVELOPMENT TEAM'S ALLOCATIONS, AND THAT YOU MAKE NO CLAIMS AGAINST ANY DONCOIN PARTY.\n";
-  const TERMS_HASH = "4041f63de7da6b6d2aa130107588562bc7ca7c057df098ca687fc62554620aa5";
+  const TERMS_MD = "# DONCOIN Terms of Use\n\nVersion 3.2 \u00b7 Effective 10 November 2026\n\nBy signing with your wallet you agree to these Terms. You must be at least 18 years old. You must sign before you play and again every 6 months. If you do not agree, do not use DONCOIN.\n\n## 1. DONCOIN is a game\n\nDONCOIN is purely a game for entertainment. DONCOIN tokens are game points. They are not a financial product of any kind: not an investment, a security, a currency, e-money, a deposit or a financial instrument. They give no right to profit, payment, ownership or anything else. Nobody promises that DONCOIN will ever have any value, price or market. Do not play expecting to make money.\n\n## 2. Playing costs money, and you will not get it back\n\nPlaying the game has costs, including Solana network fees, conversion fees paid in SOL and DONCOIN, and deposits for game accounts. You accept that you may lose all such costs, and you do not expect to get any of them back in any way. Any amount the game program returns, such as a deposit when an account is closed, is not guaranteed.\n\n## 3. You accept all risks and make no claims\n\nYou play entirely at your own risk. This includes loss of value, software errors, hacks, lost wallet keys, failure of Solana or other services the game uses, and changes in law. To the fullest extent the law allows, you give up all claims of any kind against the DONCOIN Parties, meaning DONCOIN, the founder of DONCOIN and everyone who builds or runs the game, and you will not bring any claim against them.\n\n## 4. The Founder's allocation\n\nYou understand and accept that the founder of DONCOIN (the Founder) is treated differently from players, as follows:\n\n1. The Founder's wallet is fixed when the game program is launched and can never be changed.\n2. The Founder has no activity requirement: the Founder does not check in and needs no identity verification.\n3. Every day the Founder counts as one participant when players' shares are calculated, which lowers each player's share.\n4. The per-player cap (1% of each day's issuance) does not apply to the Founder.\n5. Every day the Founder receives the remainder: the day's issuance minus everything settled to players for that day, including amounts cut by the per-player cap and player shares not settled within 30 days. With few players this can be most of each day's issuance.\n6. 80% of the remainder goes to the Founder, locked for 4 months like players' earnings. 20% goes to the Liquidity Vault at once.\n7. The Founder pays no conversion fees.\n8. The Founder must sign these Terms every 6 months like every player.\n9. The Founder receives no other allocation: no pre-mine, no sale proceeds and no share of fees.\n\n## 5. The Development Team's allocation\n\nYou understand and accept that the Development Team, whose wallet is fixed when the game program is launched and can never be changed, receives 650,000 DONCOIN (about 3.1% of the maximum supply) at launch, before any player has played. This allocation is credited in advance and taken from the start of the issuance schedule, so the first halving comes 34 days earlier (on day 514 instead of day 548). It is locked for 4 months like players' earnings. The Development Team does not check in, receives nothing else from the game and pays the normal conversion fees.\n\n## 6. Game rules and the White Paper\n\nThe DONCOIN White Paper describes all rules of the game, including supply, issuance, rewards, invitations, the Founder's and the Development Team's allocations, the Liquidity Vault and fees. The version published when you sign forms part of these Terms. Where the White Paper and the game program differ, the program decides.\n\n## 7. One account per computer\n\nYou may have only one DONCOIN game account per computer. To limit this, the DONCOIN app stores a random code on your computer, in your browser's storage and a cookie, linked to the wallet you register with. The code stays on your computer and is not sent to DONCOIN or anyone else. By signing you consent to this storage. You may delete it, but you must not create more than one account per computer.\n\n## Acknowledgement\n\nBY SIGNING, YOU CONFIRM THAT DONCOIN IS A GAME FOR ENTERTAINMENT ONLY, THAT YOU ACCEPT LOSING ALL COSTS OF PLAYING, THAT YOU ACCEPT THE FOUNDER'S AND THE DEVELOPMENT TEAM'S ALLOCATIONS, AND THAT YOU MAKE NO CLAIMS AGAINST ANY DONCOIN PARTY.\n";
+  const TERMS_HASH = "531db2d69e37d6b1e91c32b6c035faf23c411e78fc0fdbf2f500949c5089719d";
   const LOGO = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 128 128\" role=\"img\" aria-label=\"DONCOIN\"><defs><linearGradient id=\"dg\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#F7D88A\"/><stop offset=\".5\" stop-color=\"#E2A53C\"/><stop offset=\"1\" stop-color=\"#B8761A\"/></linearGradient><radialGradient id=\"dc\" cx=\".35\" cy=\".3\" r=\".8\"><stop offset=\"0\" stop-color=\"#1D3D33\"/><stop offset=\"1\" stop-color=\"#0B1C17\"/></radialGradient></defs><circle cx=\"64\" cy=\"64\" r=\"63\" fill=\"url(#dg)\"/><g stroke=\"#7A4E0E\" stroke-width=\"2.2\" stroke-linecap=\"round\" opacity=\".55\"><line x1=\"64.00\" y1=\"7.00\" x2=\"64.00\" y2=\"3.50\"/><line x1=\"92.50\" y1=\"14.64\" x2=\"94.25\" y2=\"11.61\"/><line x1=\"113.36\" y1=\"35.50\" x2=\"116.39\" y2=\"33.75\"/><line x1=\"121.00\" y1=\"64.00\" x2=\"124.50\" y2=\"64.00\"/><line x1=\"113.36\" y1=\"92.50\" x2=\"116.39\" y2=\"94.25\"/><line x1=\"92.50\" y1=\"113.36\" x2=\"94.25\" y2=\"116.39\"/><line x1=\"64.00\" y1=\"121.00\" x2=\"64.00\" y2=\"124.50\"/><line x1=\"35.50\" y1=\"113.36\" x2=\"33.75\" y2=\"116.39\"/><line x1=\"14.64\" y1=\"92.50\" x2=\"11.61\" y2=\"94.25\"/><line x1=\"7.00\" y1=\"64.00\" x2=\"3.50\" y2=\"64.00\"/><line x1=\"14.64\" y1=\"35.50\" x2=\"11.61\" y2=\"33.75\"/><line x1=\"35.50\" y1=\"14.64\" x2=\"33.75\" y2=\"11.61\"/></g><circle cx=\"64\" cy=\"64\" r=\"53.5\" fill=\"url(#dc)\"/><circle cx=\"64\" cy=\"64\" r=\"53.5\" fill=\"none\" stroke=\"#F7D88A\" stroke-opacity=\".28\" stroke-width=\"1.2\"/><path d=\"M45 37 H61 A27 27 0 0 1 61 91 H45 Z\" fill=\"none\" stroke=\"url(#dg)\" stroke-width=\"10\" stroke-linejoin=\"round\"/><circle cx=\"61\" cy=\"64\" r=\"8.5\" fill=\"url(#dg)\"/></svg>";
   const ONE = 1000000000n, FIRST = 10500000n * ONE, PERIOD = 548, OFFSET = 34, DAY_S = 86400, MONTH_S = 2629800, LOCK = 4, TERMS_DAYS = 182, SETTLE_WINDOW = 30;
   const conn = new Connection(RPC, "confirmed");
@@ -215,7 +215,7 @@ footer{max-width:1240px;margin:0 auto;padding:0 24px 32px;display:flex;flex-wrap
       const [ui, sb] = await Promise.all([conn.getAccountInfo(userPda(wallet.pubkey)), conn.getBalance(wallet.pubkey)]);
       solBalance = sb; user = ui ? readUser(ui.data) : null;
       try { const tb = await conn.getTokenAccountBalance(ata(wallet.pubkey, MINT)); donBalance = BigInt(tb.value.amount); } catch (e) {}
-      if (user) await loadInvites();
+      if (user) { await loadInvites(); await deviceBind(); }
     }
     render();
   }
@@ -275,6 +275,44 @@ footer{max-width:1240px;margin:0 auto;padding:0 24px 32px;display:flex;flex-wrap
   }
   async function ixReferral(referee) { return ix([SIGNER(), W_(CONFIG), W_(referee), W_(userPda(wallet.pubkey))], await disc("claim_referral")); }
 
+  // ---------- one account per computer ----------
+  // The app keeps a code on this computer (local storage, IndexedDB and a cookie, so one cleared store
+  // is restored from the others) together with the wallet that registered from it. A new account can only
+  // be created on a computer that has none. Nothing is sent anywhere; see Terms of Use point 7.
+  const DEV_KEY = "doncoin-device";
+  let device = { id: null, wallet: null };
+  function idb(mode, fn) {
+    return new Promise((res) => {
+      try {
+        const o = indexedDB.open("doncoin", 1);
+        o.onupgradeneeded = () => o.result.createObjectStore("kv");
+        o.onsuccess = () => { try { const t = o.result.transaction("kv", mode); const r = fn(t.objectStore("kv")); t.oncomplete = () => res(r && r.result); t.onerror = () => res(null); } catch (e) { res(null); } };
+        o.onerror = () => res(null);
+      } catch (e) { res(null); }
+    });
+  }
+  const parseDev = (v) => { try { const d = typeof v === "string" ? JSON.parse(v) : v; return d && d.id ? d : null; } catch (e) { return null; } };
+  async function deviceLoad() {
+    const fromLs = parseDev((() => { try { return localStorage.getItem(DEV_KEY); } catch (e) { return null; } })());
+    const ck = (document.cookie.match(/(?:^|; )doncoin_device=([^;]+)/) || [])[1];
+    const fromCk = parseDev(ck ? decodeURIComponent(ck) : null);
+    const fromDb = parseDev(await idb("readonly", (st) => st.get(DEV_KEY)));
+    const all = [fromLs, fromCk, fromDb].filter(Boolean);
+    device = all.find((d) => d.wallet) || all[0] || { id: hex(crypto.getRandomValues(new Uint8Array(16))), wallet: null };
+    await deviceSave();
+  }
+  async function deviceSave() {
+    const v = JSON.stringify(device);
+    try { localStorage.setItem(DEV_KEY, v); } catch (e) {}
+    document.cookie = "doncoin_device=" + encodeURIComponent(v) + "; max-age=315360000; path=/; SameSite=Lax" + (location.protocol === "https:" ? "; Secure" : "");
+    await idb("readwrite", (st) => st.put(v, DEV_KEY));
+  }
+  async function deviceBind() {
+    if (!wallet || !user || isFounder() || isDev() || device.wallet) return;
+    device.wallet = wallet.pubkey.toBase58(); await deviceSave();
+  }
+  const deviceTaken = () => !!(wallet && device.wallet && device.wallet !== wallet.pubkey.toBase58());
+
   // ---------- derived numbers ----------
   function unsettled() { return user ? user.days.filter((e) => e.used && e.active && !e.settled && e.day < today && today - e.day <= SETTLE_WINDOW) : []; }
   function todayEntry() { return user ? user.days.find((e) => e.used && e.day === today) : null; }
@@ -305,16 +343,22 @@ footer{max-width:1240px;margin:0 auto;padding:0 24px 32px;display:flex;flex-wrap
       '<p class="small muted">A test wallet is created in this browser for devnet only. Fund it with free devnet SOL at faucet.solana.com.</p></div>';
   }
   function renderRegister() {
+    if (deviceTaken()) {
+      $("main").innerHTML = '<div class="center">' + LOGO + '<h1>This computer already has a DONCOIN account</h1>' +
+        '<p class="muted">DONCOIN allows one account per computer. This computer is used by the account <span class="mono">' + esc(short(new PublicKey(device.wallet))) + '</span>. Connect that wallet to play.</p>' +
+        '<button class="big" data-a="disconnect">Use another wallet</button></div>';
+      return;
+    }
     const code = (location.hash.match(/^#join-([A-Za-z0-9-]+)$/) || [])[1] || "";
     $("main").innerHTML = '<div class="center" style="text-align:left;align-items:stretch"><div style="text-align:center">' + LOGO + '<h1 style="margin-top:8px">Create your game account</h1></div>' +
       '<div class="card"><div><label for="code">Invitation code (optional)</label><input id="code" placeholder="XXXX-XXXX-XXXX" value="' + esc(code.toUpperCase()) + '" autocomplete="off" spellcheck="false"></div>' +
-      '<p class="small muted">You will read and sign the Terms of Use with your wallet. Registration costs a deposit of about 0.0098 SOL plus a network fee. Your wallet has ' + (solBalance / 1e9).toFixed(4) + ' SOL.</p>' +
+      '<p class="small muted">You will read and sign the Terms of Use with your wallet. Registration costs a deposit of about 0.0098 SOL plus a network fee. Your wallet has ' + (solBalance / 1e9).toFixed(4) + ' SOL.</p><p class="small muted">One account per computer: the app keeps a code on this computer that links it to the wallet you register with. After that, no other new account can be created here.</p>' +
       '<button class="primary big" data-a="register">Read Terms &amp; register</button></div>' +
       '<p class="small muted" style="text-align:center">Wallet <span class="mono">' + wallet.pubkey.toBase58() + '</span></p></div>';
   }
   function renderLocked() {
     const had = user && user.termsHash !== "0".repeat(64);
-    $("main").innerHTML = '<div class="center">' + LOGO + "<h1>" + (had ? "Your Terms signature has expired" : "Sign the Terms of Use") + '</h1><p class="muted">Check-ins, invitations and conversions are refused until you sign the current Terms of Use v3.1. The signature is renewed every 6 months.</p><button class="primary big" data-a="terms">Read and sign the Terms</button></div>';
+    $("main").innerHTML = '<div class="center">' + LOGO + "<h1>" + (had ? "Your Terms signature has expired" : "Sign the Terms of Use") + '</h1><p class="muted">Check-ins, invitations and conversions are refused until you sign the current Terms of Use v3.2. The signature is renewed every 6 months.</p><button class="primary big" data-a="terms">Read and sign the Terms</button></div>';
   }
   function renderHome() {
     const e = emission(today), cap = (e * BigInt(config.capBps)) / 10000n;
@@ -407,13 +451,13 @@ footer{max-width:1240px;margin:0 auto;padding:0 24px 32px;display:flex;flex-wrap
     else if (a === "test-wallet") { wallet = testWallet(); localStorage.setItem("doncoin-wallet", "test"); await refresh(); }
     else if (a === "disconnect") { wallet = null; localStorage.removeItem("doncoin-wallet"); try { phantom() && phantom().disconnect(); } catch (e) {} render(); }
     else if (a === "copy-addr" || a === "copy") { const t = a === "copy" ? b.dataset.t : wallet.pubkey.toBase58(); try { await navigator.clipboard.writeText(t); toast("Copied: " + t, "ok"); } catch (e) { toast(t, "ok"); } }
-    else if (a === "register") openTerms("register", ($("code").value || "").trim().toUpperCase());
+    else if (a === "register") { if (deviceTaken()) return render(); openTerms("register", ($("code").value || "").trim().toUpperCase()); }
     else if (a === "terms") openTerms("sign");
     else if (a === "view-terms") openTerms("view");
     else if (a === "tclose") { $("tm").hidden = true; }
     else if (a === "tsign") {
       $("tm").hidden = true;
-      if (tMode === "register") await send([await ixRegister(tCode || null)], "Registered and Terms signed. Welcome to DONCOIN!");
+      if (tMode === "register") { await deviceLoad(); if (deviceTaken()) { render(); return; } await send([await ixRegister(tCode || null)], "Registered and Terms signed. Welcome to DONCOIN!"); }
       else await send([await ixTerms()], "Terms signed. Valid for 6 months.");
     }
     else if (a === "checkin") { const ixs = []; for (const e of unsettled()) ixs.push(await ixSettle(e.day)); ixs.push(await ixCheckIn(today)); await send(ixs, "Checked in for day " + today + "."); }
@@ -425,6 +469,7 @@ footer{max-width:1240px;margin:0 auto;padding:0 24px 32px;display:flex;flex-wrap
   // ---------- start ----------
   const t = await sha256(enc.encode(TERMS_MD));
   if (hex(t) !== TERMS_HASH) console.warn("Terms text does not match its fingerprint");
+  await deviceLoad();
   const last = localStorage.getItem("doncoin-wallet");
   if (last === "test") wallet = testWallet();
   else if (last === "phantom" && phantom()) { try { const r = await phantom().connect({ onlyIfTrusted: true }); wallet = { pubkey: new PublicKey(r.publicKey.toString()), label: "Phantom", sign: (tx) => phantom().signTransaction(tx) }; } catch (e) {} }
