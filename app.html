@@ -77,7 +77,7 @@ footer{max-width:1240px;margin:0 auto;padding:0 24px 32px;display:flex;flex-wrap
 </head>
 <body>
 <header><div class="hin">
-  <div class="brand"><a class="home" href="index.html" title="Back to doncoin.app" aria-label="DONCOIN home page"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="DONCOIN"><circle cx="100" cy="100" r="96" fill="#E2A53C"/><polygon points="100.00,42.00 150.23,129.00 49.77,129.00" fill="#0B1C17"/></svg><span class="wm">DON<span>COIN</span></span></a><span class="net" id="netbadge">DEVNET</span></div>
+  <div class="brand"><a class="home" href="index.html" title="Back to doncoin.app" aria-label="DONCOIN home page"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="DONCOIN"><circle cx="100" cy="100" r="96" fill="#E2A53C"/><polygon points="100.00,42.00 150.23,129.00 49.77,129.00" fill="#0B1C17"/></svg><span class="wm">DON<span>COIN</span></span></a></div>
   <div class="hright" id="hright"></div>
 </div></header>
 <main id="main"><div class="center"><p class="muted">Loading…</p></div></main>
@@ -119,9 +119,11 @@ footer{max-width:1240px;margin:0 auto;padding:0 24px 32px;display:flex;flex-wrap
   const W = solanaWeb3;
   const { PublicKey, Connection, Transaction, TransactionInstruction, SystemProgram, Keypair, ComputeBudgetProgram } = W;
   const qs = new URLSearchParams(location.search);
-  const RPC = qs.get("rpc") || "https://api.devnet.solana.com";
-  const PROGRAM = new PublicKey(qs.get("program") || "BhFFu6Pt3WSpcXyVLqEttWja7LQddWrcZhvnEXwe5N6m");
-  const CLUSTER = "devnet";
+  const NET = {"cluster": "mainnet-beta", "program": "9wxtAhr7KDrgV5oHzXnnMRFHhxJubKhLf8qPodeHCu4q", "send": "https://api.mainnet-beta.solana.com", "rpc": "https://mainnet.helius-rpc.com/?api-key=3e3d84a6-fb35-4ade-8fb2-a70b0593ad8e"};
+  const DEVNET = NET.cluster === "devnet";
+  const RPC = qs.get("rpc") || NET.rpc;
+  const PROGRAM = new PublicKey(qs.get("program") || NET.program);
+  const CLUSTER = NET.cluster;
   const TOKEN_PROGRAM = new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA");
   const ATA_PROGRAM = new PublicKey("ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL");
   const TERMS_MD = "# DONCOIN Terms of Use\n\nVersion 3.3 \u00b7 Effective 10 November 2026\n\nBy signing with your wallet you agree to these Terms. You must be at least 18 years old. You must sign before you play and again every 6 months. If you do not agree, do not use DONCOIN.\n\n## 1. DONCOIN is a game\n\nDONCOIN is purely a game for entertainment. DONCOIN tokens are game points. They are not a financial product of any kind: not an investment, a security, a currency, e-money, a deposit or a financial instrument. They give no right to profit, payment, ownership or anything else. Nobody promises that DONCOIN will ever have any value, price or market. Do not play expecting to make money.\n\n## 2. Playing costs money, and you will not get it back\n\nPlaying the game has costs, including Solana network fees, conversion fees paid in SOL and DONCOIN, and deposits for game accounts. You accept that you may lose all such costs, and you do not expect to get any of them back in any way. Any amount the game program returns, such as a deposit when an account is closed, is not guaranteed.\n\n## 3. You accept all risks and make no claims\n\nYou play entirely at your own risk. This includes loss of value, software errors, hacks, lost wallet keys, failure of Solana or other services the game uses, and changes in law. To the fullest extent the law allows, you give up all claims of any kind against the DONCOIN Parties, meaning DONCOIN, the founder of DONCOIN and everyone who builds or runs the game, and you will not bring any claim against them.\n\n## 4. The Founder's allocation\n\nYou understand and accept that the founder of DONCOIN (the Founder) is treated differently from players, as follows:\n\n1. The Founder's wallet is fixed when the game program is launched and can never be changed.\n2. The Founder has no activity requirement: the Founder does not check in and needs no identity verification.\n3. Every day the Founder counts as one participant when players' shares are calculated, which lowers each player's share.\n4. The per-player cap (1% of each day's issuance) does not apply to the Founder.\n5. Every day the Founder receives the remainder: the day's issuance minus everything settled to players for that day, including amounts cut by the per-player cap and player shares not settled within 30 days. With few players this can be most of each day's issuance.\n6. 80% of the remainder goes to the Founder, locked for 4 months like players' earnings. 20% goes to the Liquidity Vault at once.\n7. The Founder pays no conversion fees, and receives half of the DONCOIN part of every conversion fee paid by others (1.5% of the converted DONCOIN at the current 3% fee). The other half and the SOL fee go to the Liquidity Vault.\n8. The Founder must sign these Terms every 6 months like every player.\n9. The Founder receives no other allocation: no pre-mine and no sale proceeds.\n\n## 5. The Development Team's allocation\n\nYou understand and accept that the Development Team, whose wallet is fixed when the game program is launched and can never be changed, receives 650,000 DONCOIN (about 3.1% of the maximum supply) at launch, before any player has played. This allocation is credited in advance and taken from the start of the issuance schedule, so the first halving comes 34 days earlier (on day 514 instead of day 548). It is locked for 4 months like players' earnings. The Development Team does not check in, receives nothing else from the game and pays the normal conversion fees.\n\n## 6. Game rules and the White Paper\n\nThe DONCOIN White Paper describes all rules of the game, including supply, issuance, rewards, invitations, the Founder's and the Development Team's allocations, the Liquidity Vault and fees. The version published when you sign forms part of these Terms. Where the White Paper and the game program differ, the program decides.\n\n## 7. One account per computer\n\nYou may have only one DONCOIN game account per computer. To limit this, the DONCOIN app stores a random code on your computer, in your browser's storage and a cookie, linked to the wallet you register with. The code stays on your computer and is not sent to DONCOIN or anyone else. By signing you consent to this storage. You may delete it, but you must not create more than one account per computer.\n\n## Acknowledgement\n\nBY SIGNING, YOU CONFIRM THAT DONCOIN IS A GAME FOR ENTERTAINMENT ONLY, THAT YOU ACCEPT LOSING ALL COSTS OF PLAYING, THAT YOU ACCEPT THE FOUNDER'S AND THE DEVELOPMENT TEAM'S ALLOCATIONS, AND THAT YOU MAKE NO CLAIMS AGAINST ANY DONCOIN PARTY.\n";
@@ -129,6 +131,8 @@ footer{max-width:1240px;margin:0 auto;padding:0 24px 32px;display:flex;flex-wrap
   const LOGO = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 200 200\" role=\"img\" aria-label=\"DONCOIN\"><circle cx=\"100\" cy=\"100\" r=\"96\" fill=\"#E2A53C\"/><polygon points=\"100.00,42.00 150.23,129.00 49.77,129.00\" fill=\"#0B1C17\"/></svg>";
   const ONE = 1000000000n, FIRST = 10500000n * ONE, PERIOD = 548, OFFSET = 34, DAY_S = 86400, MONTH_S = 2629800, LOCK = 4, TERMS_DAYS = 182, SETTLE_WINDOW = 30;
   const conn = new Connection(RPC, "confirmed");
+  // Transactions go out through the public Solana endpoint (its limit is per player), reads through our RPC.
+  const sendConn = NET.send && !qs.get("rpc") ? new Connection(NET.send, "confirmed") : conn;
   const enc = new TextEncoder();
   const $ = (id) => document.getElementById(id);
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -152,7 +156,7 @@ footer{max-width:1240px;margin:0 auto;padding:0 24px 32px;display:flex;flex-wrap
   const emission = (day) => { const p = BigInt(Math.floor((day + OFFSET) / PERIOD)); return p > 63n ? 0n : (FIRST >> p) / BigInt(PERIOD); };
   const fmt = (x, dp = 2) => { const neg = x < 0n; if (neg) x = -x; const w = x / ONE, f = ((x % ONE) * 10n ** BigInt(dp)) / ONE; return (neg ? "-" : "") + w.toLocaleString("en-US") + (dp ? "." + f.toString().padStart(dp, "0") : ""); };
   const short = (k) => { const s = k.toString(); return s.slice(0, 4) + "…" + s.slice(-4); };
-  const explorer = (k, type = "address") => "https://explorer.solana.com/" + type + "/" + k + "?cluster=" + CLUSTER;
+  const explorer = (k, type = "address") => "https://explorer.solana.com/" + type + "/" + k + (DEVNET ? "?cluster=devnet" : "");
 
   class R { // borsh reader
     constructor(d) { this.d = d; this.v = new DataView(d.buffer, d.byteOffset, d.byteLength); this.o = 8; }
@@ -196,7 +200,7 @@ footer{max-width:1240px;margin:0 auto;padding:0 24px 32px;display:flex;flex-wrap
   function phantom() { const p = (window.phantom && window.phantom.solana) || (window.solana && window.solana.isPhantom ? window.solana : null); return p; }
   async function connectPhantom() {
     const p = phantom();
-    if (!p) { toast("No Solana wallet found in this browser. Install Phantom in Chrome, or use a test wallet on devnet.", "bad"); return; }
+    if (!p) { toast("No Solana wallet found in this browser. Install Phantom in Chrome" + (DEVNET ? ", or use a test wallet on devnet." : "."), "bad"); return; }
     const r = await p.connect();
     wallet = { pubkey: new PublicKey(r.publicKey.toString()), label: "Phantom", sign: (tx) => p.signTransaction(tx) };
     localStorage.setItem("doncoin-wallet", "phantom"); await refresh();
@@ -245,7 +249,7 @@ footer{max-width:1240px;margin:0 auto;padding:0 24px 32px;display:flex;flex-wrap
       tx.recentBlockhash = (await conn.getLatestBlockhash("confirmed")).blockhash;
       const signed = await wallet.sign(tx);
       $("busytext").textContent = "Sending to Solana…";
-      const sig = await conn.sendRawTransaction(signed.serialize(), { skipPreflight: false });
+      const sig = await sendConn.sendRawTransaction(signed.serialize(), { skipPreflight: false });
       await conn.confirmTransaction(sig, "confirmed");
       toast(okText, "ok", sig);
       await refresh();
@@ -362,9 +366,9 @@ footer{max-width:1240px;margin:0 auto;padding:0 24px 32px;display:flex;flex-wrap
     renderHome();
   }
   function renderConnect() {
-    $("main").innerHTML = '<div class="center">' + LOGO + '<h1>Play DONCOIN</h1><p class="muted">Check in once a day and share the daily issuance of DON game points. Connect a Solana wallet to start. This is the devnet test: no real money.</p>' +
-      '<div class="row" style="justify-content:center"><button class="primary big" data-a="connect">Connect Phantom</button><button class="big" data-a="test-wallet">Use a test wallet</button></div>' +
-      '<p class="small muted">A test wallet is created in this browser for devnet only. Fund it with free devnet SOL at faucet.solana.com.</p></div>';
+    $("main").innerHTML = '<div class="center">' + LOGO + '<h1>Play DONCOIN</h1><p class="muted">Check in once a day and share the daily issuance of DON game points. Connect a Solana wallet to start. ' + (DEVNET ? "This is the devnet test: no real money." : "Entertainment only, not an investment.") + '</p>' +
+      '<div class="row" style="justify-content:center"><button class="primary big" data-a="connect">Connect Phantom</button>' + (DEVNET ? '<button class="big" data-a="test-wallet">Use a test wallet</button>' : "") + '</div>' +
+      (DEVNET ? '<p class="small muted">A test wallet is created in this browser for devnet only. Fund it with free devnet SOL at faucet.solana.com.</p>' : '<p class="small muted">You need a little SOL in your wallet for the account deposit and transaction fees.</p>') + '</div>';
   }
   function renderRegister() {
     if (deviceTaken()) {
@@ -414,7 +418,8 @@ footer{max-width:1240px;margin:0 auto;padding:0 24px 32px;display:flex;flex-wrap
                  : '<h1 id="h1">You haven’t checked in today</h1><p class="sub">One signed transaction counts you in for today’s share of ' + fmt(e, 0) + " DON.</p>") +
         '<div class="row"><span class="pill gold">' + user.activeDays + (user.activeDays === 1 ? ' active day' : ' active days') + '</span><span class="pill">' + dayAcct.totalPoints.toString() + (dayAcct.totalPoints === 1n ? ' player' : ' players') + " checked in so far</span></div></div>" +
       '<div class="r"><div class="row" style="justify-content:space-between"><span class="small" style="color:#c9d8d0">Estimated share today</span><span class="mono" style="font-size:22px">' + fmt(checked ? est : 0n) + " DON</span></div>" +
-        (checked ? '<div class="done">✓ Checked in</div>' : '<button class="primary big" data-a="checkin">Check in for day ' + today + "</button>") +
+        (nowS() < config.genesis ? '<div class="done">Check-ins open ' + new Date(config.genesis * 1000).toUTCString().replace(":00 GMT", " UTC").replace(":00 UTC", " UTC") + "</div>"
+          : checked ? '<div class="done">✓ Checked in</div>' : '<button class="primary big" data-a="checkin">Check in for day ' + today + "</button>") +
         '<span class="small" style="color:#a9bdb3;text-align:center">Final share is known when the day ends (00:00 UTC)</span></div></section>') +
       '<div class="cols"><div class="cl">' +
         '<section class="card" aria-labelledby="h-earn"><div class="head"><h2 id="h-earn">My DONCOIN</h2><span class="small muted">Earnings unlock 4 months after the month they were earned</span></div>' +
@@ -478,7 +483,7 @@ footer{max-width:1240px;margin:0 auto;padding:0 24px 32px;display:flex;flex-wrap
   document.addEventListener("click", async (ev) => {
     const b = ev.target.closest("[data-a]"); if (!b) return; const a = b.dataset.a; if (b.tagName === "A") ev.preventDefault();
     if (a === "connect") await connectPhantom();
-    else if (a === "test-wallet") { wallet = testWallet(); localStorage.setItem("doncoin-wallet", "test"); await refresh(); }
+    else if (a === "test-wallet" && DEVNET) { wallet = testWallet(); localStorage.setItem("doncoin-wallet", "test"); await refresh(); }
     else if (a === "disconnect") { wallet = null; localStorage.removeItem("doncoin-wallet"); try { phantom() && phantom().disconnect(); } catch (e) {} render(); }
     else if (a === "copy-addr" || a === "copy") { const t = a === "copy" ? b.dataset.t : wallet.pubkey.toBase58(); try { await navigator.clipboard.writeText(t); toast("Copied: " + t, "ok"); } catch (e) { toast(t, "ok"); } }
     else if (a === "register") { if (deviceTaken() || privateMode) return render(); openTerms("register", ($("code").value || "").trim().toUpperCase()); }
@@ -502,7 +507,7 @@ footer{max-width:1240px;margin:0 auto;padding:0 24px 32px;display:flex;flex-wrap
   await deviceLoad();
   privateMode = await detectPrivate();
   const last = localStorage.getItem("doncoin-wallet");
-  if (last === "test") wallet = testWallet();
+  if (last === "test" && DEVNET) wallet = testWallet();
   else if (last === "phantom" && phantom()) { try { const r = await phantom().connect({ onlyIfTrusted: true }); wallet = { pubkey: new PublicKey(r.publicKey.toString()), label: "Phantom", sign: (tx) => phantom().signTransaction(tx) }; } catch (e) {} }
   try { await refresh(); } catch (e) { $("main").innerHTML = '<div class="center"><p>Could not reach Solana (' + esc(e.message) + ").</p></div>"; }
   window.__doncoin = { refresh, get wallet() { return wallet; } };
