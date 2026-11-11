@@ -1,0 +1,11 @@
+{
+  "name": "DONCOIN",
+  "symbol": "DON",
+  "description": "DONCOIN (DON) is the game token of a daily check-in game on Solana. Entertainment only, not an investment.",
+  "image": "https://doncoin.app/assets/doncoin-token-512.png",
+  "external_url": "https://doncoin.app",
+  "properties": {
+    "files": [{ "uri": "https://doncoin.app/assets/doncoin-token-512.png", "type": "image/png" }],
+    "category": "image"
+  }
+}
