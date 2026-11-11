@@ -157,7 +157,7 @@
   <li><b>What goes in:</b> half of every DON conversion fee (1.5% of converted DON), the 0.003 SOL fee per conversion, and 20% of every Founder remainder.</li>
   <li><b>What can come out:</b> nothing, except paired deposits into the pool. The Vault cannot sell DON, pay anyone, or withdraw its pool position. Nobody, including the Founder, can move its funds.</li>
   <li><b>When the pool opens:</b> at the earliest in month 4 (from about 21 March 2027), when the first player earnings unlock, and only once the Vault has at least 10 SOL available on top of a 1 SOL reserve for Raydium's costs.</li>
-  <li><b>Opening price:</b> the pool opens at a start price set when the program is launched [START PRICE, SOL PER DON]. The Vault uses its available SOL and only as much DON as matches that price; the rest waits.</li>
+  <li><b>Opening price:</b> set by the administrator before the pool opens; the pool cannot open until it has been set. The Vault uses its available SOL and only as much DON as matches that price; the rest waits.</li>
   <li><b>Top-ups:</b> afterwards anyone can trigger a top-up. The Vault adds DON and SOL in the pool's current ratio, at most 20% of the pool at a time.</li>
   <li><b>Manipulation guard:</b> the pool price is recorded at most once an hour into a moving average. Top-ups start after 24 recordings and are refused if the price is more than 3% from the average.</li>
   <li><b>If someone opens the pool first:</b> the Vault adopts that pool (same fee tier) and starts adding after 24 price recordings.</li>
@@ -192,7 +192,7 @@
     <tr><td>Per-player cap (default 1%)</td><td>Before freeze, up to 100%</td></tr>
     <tr><td>Conversion fees (default 3% + 0.003 SOL)</td><td>Before freeze, max 3% and 0.01 SOL</td></tr>
     <tr><td>Equal split of the DON fee between Vault and Founder</td><td>Never</td></tr>
-    <tr><td>Pool threshold, start price, Raydium fee tier</td><td>Before freeze and only until the pool exists</td></tr>
+    <tr><td>Pool threshold, opening price, Raydium fee tier</td><td>Before freeze and only until the pool exists</td></tr>
     <tr><td>Terms of Use version</td><td>Before freeze; players must then sign the new version</td></tr>
     <tr><td>Optional Civic identity check (off at launch)</td><td>Can be switched on before freeze</td></tr>
   </tbody>
@@ -205,7 +205,7 @@
   <li><b>Signing:</b> the signature stores a fingerprint (SHA-256) of the exact Terms text and the date on-chain. The program refuses check-ins, invitations and conversions without a valid signature, also for anyone who bypasses the app.</li>
   <li><b>One account per computer:</b> the app keeps a random code on the player's computer, linked to the wallet that registered there, and refuses a new account on a computer that already has one. New accounts cannot be created in private or incognito windows, which would forget the code. The code never leaves the computer. Anyone who uses another browser or bypasses the app can still create more accounts, so the 1% cap applies per account.</li>
   <li><b>Risks:</b> DON may never have any value, price or market. Players may lose all costs of playing. Software errors, hacks, lost wallet keys, failures of Solana or Raydium, and changes in law can all cause losses. Players accept all these risks and make no claims against the DONCOIN parties.</li>
-  <li><b>Status:</b> the program has been tested on Solana's devnet test network. An independent security audit is planned after launch and before the pool can open in month 4; until the audit is published, treat the software as unaudited. Numbers in this paper follow the program's current code.</li>
+  <li><b>Status:</b> the program has been tested on Solana's devnet test network. The software has not been independently audited; players use it at their own risk. Numbers in this paper follow the program's current code.</li>
   <li><b>Launch and addresses:</b> operator DONCOIN. Launch 20 November 2026 at 00:00 UTC. The program address and the DON token address will be published here, on doncoin.app and in the app before launch; only DON at that address is real DONCOIN.</li>
 </ul>
 <div class="callout">DONCOIN is entertainment only. It is not an investment, and nothing in this paper is financial, legal or tax advice.</div>
