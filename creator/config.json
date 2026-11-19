@@ -65,7 +65,7 @@
     "dryRun": true,
     "rpc": "https://api.mainnet-beta.solana.com",
     "mint": "ETzykDMLR3XCny16eWBYnUD5WHnd9GsZXkMAMVqVByoa",
-    "payoutWallet": "",
+    "payoutWallet": "EQNnTGDHWpSTGscxHoEcyc7dYHrNZiUhr5YeZ5tcdnHL",
     "budgetDon": 145500,
     "maxSingleDon": 26250,
     "minSolLamports": 20000000,
