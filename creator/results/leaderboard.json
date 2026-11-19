@@ -1,0 +1,65 @@
+{
+  "program": "DON Creator Program",
+  "updatedAt": "2026-11-19T09:42:00.850Z",
+  "registeredCreators": 0,
+  "payoutWallet": "EQNnTGDHWpSTGscxHoEcyc7dYHrNZiUhr5YeZ5tcdnHL",
+  "live": null,
+  "periods": [
+    {
+      "n": 1,
+      "start": "2026-11-20T00:00:00Z",
+      "end": "2027-03-20T00:00:00Z",
+      "amount": 50000,
+      "status": "pending"
+    },
+    {
+      "n": 2,
+      "start": "2027-03-20T00:00:00Z",
+      "end": "2027-04-20T00:00:00Z",
+      "amount": 25000,
+      "status": "pending"
+    },
+    {
+      "n": 3,
+      "start": "2027-04-20T00:00:00Z",
+      "end": "2027-05-20T00:00:00Z",
+      "amount": 25000,
+      "status": "pending"
+    },
+    {
+      "n": 4,
+      "start": "2027-05-20T00:00:00Z",
+      "end": "2027-06-20T00:00:00Z",
+      "amount": 10000,
+      "status": "pending"
+    },
+    {
+      "n": 5,
+      "start": "2027-06-20T00:00:00Z",
+      "end": "2027-07-20T00:00:00Z",
+      "amount": 10000,
+      "status": "pending"
+    },
+    {
+      "n": 6,
+      "start": "2027-07-20T00:00:00Z",
+      "end": "2027-08-20T00:00:00Z",
+      "amount": 10000,
+      "status": "pending"
+    },
+    {
+      "n": 7,
+      "start": "2027-08-20T00:00:00Z",
+      "end": "2027-09-20T00:00:00Z",
+      "amount": 10000,
+      "status": "pending"
+    },
+    {
+      "n": 8,
+      "start": "2027-09-20T00:00:00Z",
+      "end": "2027-10-20T00:00:00Z",
+      "amount": 10000,
+      "status": "pending"
+    }
+  ]
+}
