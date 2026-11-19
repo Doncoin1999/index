@@ -9,15 +9,15 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const cli = path.join(here, '..', 'src', 'cli.js');
 const out = path.resolve(process.argv[2] || '/tmp/ranker-sim');
 fs.rmSync(out, { recursive: true, force: true });
-const env = (now) => ({ ...process.env, X_MOCK: path.join(here, 'mock-data.js'), RANKER_OUT_DIR: out, RANKER_NOW: now });
+const env = (now) => ({ ...process.env, X_MOCK: path.join(here, 'mock-data.js'), PAYOUT_MOCK: path.join(here, 'mock-chain.js'), RANKER_OUT_DIR: out, RANKER_NOW: now });
 const run = (now, ...args) => execFileSync('node', [cli, ...args], { env: env(now), encoding: 'utf8' });
 
 let t = new Date('2026-11-20T06:17:00Z');
-const stop = new Date('2027-10-26T06:17:00Z');
+const stop = new Date('2027-11-24T06:17:00Z');
 while (t <= stop) {
   const now = t.toISOString();
   const o = run(now, 'daily');
-  const lines = o.split('\n').filter((l) => /proposed|submitted|#\d|Review|qualified|returns|rolls/.test(l));
+  const lines = o.split('\n').filter((l) => /proposed|submitted|Paid|PROBLEM|qualified|returns|rolls/.test(l));
   if (lines.length) console.log(`--- ${now.slice(0, 10)}\n` + lines.join('\n'));
   // Admin action during the first approval window: veto a creator, then approve early.
   if (now.startsWith('2027-03-22')) {

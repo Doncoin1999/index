@@ -45,6 +45,7 @@ td{padding:9px 8px;border-bottom:1px solid #efeadf;font-variant-numeric:tabular-
       <li>Points per post: repost or quote 3, reply 2, like 1, plus 1 per 100 views. Your best 10 posts per month count.</li>
       <li>The top 5 each period get 35 / 25 / 18 / 12 / 10 % of the period's DON, minus the normal 3% conversion fee. Rewards are released to the winner's wallet 30 days after the period is settled.</li>
     </ol>
+    <p class="muted" id="wallet"></p>
     <p class="muted">Rankings are calculated automatically every day. Suspicious engagement is reviewed before a period is settled. DON is a game token for entertainment, not an investment.</p>
   </div>
 </main>
@@ -55,6 +56,7 @@ const esc=(s)=>String(s).replace(/[&<>"]/g,(c)=>({'&':'&amp;','<':'&lt;','>':'&g
 const STATUS={ok:['ok','In the running'],under_review:['rev','Under review'],not_eligible:['no','Not eligible'],excluded:['no','Excluded'],rules_not_met:['no','Posts missing #ad or disclaimer'],no_posts:['pend','No posts yet']};
 const REASON={account_too_new:'account under 6 months',too_few_followers:'under 1,000 followers',registered_after_period:'registered after the period'};
 fetch('creator/results/leaderboard.json',{cache:'no-store'}).then(r=>r.json()).then(lb=>{
+  if(lb.payoutWallet)document.getElementById('wallet').innerHTML=`Rewards are paid automatically from the Creator Program wallet <a class="mono" href="https://solscan.io/account/${esc(lb.payoutWallet)}" target="_blank" rel="noopener">${esc(lb.payoutWallet)}</a>, 30 days after each period is settled.`;
   const live=document.getElementById('live');
   if(lb.live){const p=lb.live.period;
     live.innerHTML=`<h2>Period ${p.n}: ${d(p.start)} – ${d(lb.live.endsAt)}</h2>
@@ -67,7 +69,7 @@ fetch('creator/results/leaderboard.json',{cache:'no-store'}).then(r=>r.json()).t
   document.getElementById('periods').innerHTML=lb.periods.map(p=>{
     const now=Date.now(),running=now>=Date.parse(p.start)&&now<Date.parse(p.end);
     const st=p.status==='submitted'?'<span class="pill ok">Settled</span>':p.status==='proposed'?'<span class="pill rev">In review</span>':running?'<span class="pill ok">Running</span>':now>=Date.parse(p.end)?'<span class="pill rev">Being counted</span>':'<span class="pill pend">Upcoming</span>';
-    const w=(p.winners||[]).map(x=>`<div>${x.rank}. @${esc(x.username)} – ${fmt(x.netAmount??x.amount)} DON</div>`).join('');
+    const w=(p.winners||[]).map(x=>`<div>${x.rank}. @${esc(x.username)} – ${fmt(x.netAmount??x.amount)} DON${x.tx?` · <a href="https://solscan.io/tx/${esc(x.tx)}" target="_blank" rel="noopener">paid ✓</a>`:''}</div>`).join('');
     return `<div class="p"><b>Period ${p.n}</b> ${st}<div class="muted">${d(p.start)} – ${d(p.end)} · ${fmt(p.amount)} DON before fee</div>${w?`<div style="margin-top:6px;font-size:14px">${w}</div>`:''}${p.claimableFrom?`<div class="muted" style="font-size:13px;margin-top:4px">Claimable from ${d(p.claimableFrom)}</div>`:''}${p.autoSubmitAt?`<div class="muted" style="font-size:13px;margin-top:4px">Settles ${d(p.autoSubmitAt)} unless changed in review</div>`:''}${p.hash?`<div class="mono muted" style="margin-top:6px">hash ${p.hash.slice(0,16)}…</div>`:''}</div>`}).join('');
 }).catch(()=>{document.getElementById('live').innerHTML='<h2>Current period</h2><p class="muted">The leaderboard will appear here once the program starts.</p>'});
 </script>

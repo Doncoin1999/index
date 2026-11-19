@@ -6,6 +6,8 @@
 //   node creator/src/cli.js unveto  --period N --user NAME
 //   node creator/src/cli.js clear   --period N --user NAME   clear a high-severity fraud flag
 //   node creator/src/cli.js propose --period N        recompute the proposal from stored data
+//   node creator/src/cli.js payout                    send rewards whose 30-day lock has passed (see config.payout)
+//   node creator/src/cli.js payout-retry --period N --rank R   allow a failed transfer to be sent again
 //   node creator/src/cli.js status
 import fs from 'node:fs';
 import path from 'node:path';
@@ -38,7 +40,7 @@ const F = {
 const db = {
   creators: readJson(F.creators, {}),
   posts: readJson(F.posts, {}),
-  state: readJson(F.state, { periods: {} }),
+  state: readJson(F.state, { periods: {}, payouts: {} }),
   overrides: readJson(F.overrides, {}),
 };
 const save = () => {
@@ -265,9 +267,45 @@ function writeLeaderboard() {
     const st = db.state.periods[p.n];
     if (!st || st.status === 'pending') return { n: p.n, start: p.start, end: p.end, amount: p.amount, status: 'pending' };
     const r = readJson(F.period(p.n), {});
-    return { n: p.n, start: p.start, end: p.end, amount: p.amount, status: st.status, hash: r.hash, claimableFrom: r.claimableFrom || null, autoSubmitAt: r.autoSubmitAt || null, winners: (r.winners || []).map(({ rank, username, wallet, amount, netAmount }) => ({ rank, username, wallet, amount, netAmount })) };
+    return { n: p.n, start: p.start, end: p.end, amount: p.amount, status: st.status, hash: r.hash, claimableFrom: r.claimableFrom || null, autoSubmitAt: r.autoSubmitAt || null, winners: (r.winners || []).map(({ rank, username, wallet, amount, netAmount }) => { const e = db.state.payouts?.[`${p.n}-${rank}`]; return { rank, username, wallet, amount, netAmount, paid: e?.status === 'paid', tx: e?.status === 'paid' ? e.sig : null }; }) };
   });
-  writeJson(F.leaderboard, { program: cfg.program, updatedAt: iso(t), registeredCreators: Object.keys(db.creators).length, live, periods: history });
+  writeJson(F.leaderboard, { program: cfg.program, updatedAt: iso(t), registeredCreators: Object.keys(db.creators).length, payoutWallet: process.env.PAYOUT_MOCK ? null : (cfg.payout?.payoutWallet || null), live, periods: history });
+}
+
+/* ---------- payouts ---------- */
+async function payouts({ force = false } = {}) {
+  const pc = cfg.payout;
+  if (process.env.PAYOUT_MOCK) Object.assign(pc, { enabled: true, dryRun: false });
+  if (!pc?.enabled && !force) return;
+  db.state.payouts ||= {};
+  const { runPayouts, loadKeypair } = await import('./payout.js');
+  let connection, payer;
+  if (process.env.PAYOUT_MOCK) {
+    const mock = await import(path.resolve(process.env.PAYOUT_MOCK));
+    ({ connection, payer } = mock.makeMockChain(cfg, now));
+    pc.payoutWallet = payer.publicKey.toBase58();
+  } else {
+    if (!pc?.payoutWallet) throw new Error('Set payout.payoutWallet in config.json before enabling payouts.');
+    const { Connection } = await import('@solana/web3.js');
+    connection = new Connection(process.env.PAYOUT_RPC || pc.rpc, 'confirmed');
+    payer = loadKeypair(process.env.PAYOUT_KEYPAIR);
+  }
+  const results = {};
+  for (const p of cfg.periods) { const r = readJson(F.period(p.n)); if (r) results[p.n] = r; }
+  const dryRun = Boolean(pc.dryRun) || process.env.PAYOUT_DRY_RUN === '1';
+  const summary = await runPayouts({ cfg, results, ledger: db.state.payouts, connection, payer, now, save, log, dryRun });
+  // Record payout status in each period's public result file.
+  for (const p of cfg.periods) {
+    const r = results[p.n];
+    if (!r || r.status !== 'submitted') continue;
+    r.payouts = r.winners.map((w) => {
+      const e = db.state.payouts[`${p.n}-${w.rank}`];
+      return { rank: w.rank, username: w.username, wallet: w.wallet, amount: w.netAmount ?? w.amount, status: e?.status || 'waiting', tx: e?.status === 'paid' ? e.sig : null };
+    });
+    writeJson(F.period(p.n), r);
+  }
+  save();
+  if (summary.problems.length) process.exitCode = 1;
 }
 
 /* ---------- commands ---------- */
@@ -302,7 +340,16 @@ const commands = {
     await collect();
     await refreshRecent();
     await progressPeriods();
+    await payouts();
     writeLeaderboard();
+  },
+  async payout() { await payouts({ force: true }); writeLeaderboard(); },
+  async 'payout-retry'() {
+    const p = needPeriod(); const rank = Number(arg('rank'));
+    const e = (db.state.payouts ||= {})[`${p.n}-${rank}`];
+    if (!e) throw new Error(`No payout recorded for period ${p.n}, rank ${rank}.`);
+    if (!['failed', 'error', 'expired'].includes(e.status)) throw new Error(`Payout ${p.n}-${rank} has status "${e.status}" and cannot be retried.`);
+    e.status = 'retry'; log(`Payout ${p.n}-${rank} will be sent again on the next run.`);
   },
   async approve() { await submit(needPeriod()); writeLeaderboard(); },
   async veto() { editList(needPeriod(), 'veto', needUser(), true); writeLeaderboard(); },
@@ -312,6 +359,7 @@ const commands = {
   async status() {
     log(`${Object.keys(db.creators).length} creator(s), ${Object.keys(db.posts).length} post(s). Last collect: ${db.state.lastCollect || 'never'}`);
     for (const p of cfg.periods) log(`  Period ${p.n} (${p.start.slice(0, 10)} → ${p.end.slice(0, 10)}, ${p.amount} DON): ${pstate(p.n).status}`);
+    for (const [k, e] of Object.entries(db.state.payouts || {})) log(`  Payout ${k} @${e.username}: ${e.amount} DON ${e.status}${e.sig ? ' ' + e.sig : ''}`);
   },
 };
 
@@ -322,6 +370,7 @@ try {
   save();
   const s = _client?.stats?.();
   if (s && !process.env.X_MOCK) log(`X API: ${s.calls} call(s), ~${s.resources} resource(s) read.`);
+  if (process.exitCode) console.error('Finished with problems; see PAYOUT PROBLEM lines above.');
 } catch (e) {
   save();
   console.error('Error: ' + e.message);
