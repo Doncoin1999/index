@@ -8,13 +8,16 @@ on:
       command:
         description: 'What to run'
         type: choice
-        options: [daily, approve, veto, unveto, clear, propose, status]
+        options: [daily, approve, veto, unveto, clear, propose, payout, payout-retry, status]
         default: daily
       period:
-        description: 'Period number (1–8) for approve / veto / unveto / clear / propose'
+        description: 'Period number (1–8) for approve / veto / unveto / clear / propose / payout-retry'
         required: false
       user:
         description: 'X username for veto / unveto / clear (without @)'
+        required: false
+      rank:
+        description: 'Rank (1–5) for payout-retry'
         required: false
 
 permissions:
@@ -34,20 +37,32 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
+          cache-dependency-path: creator/package-lock.json
+
+      - name: Install
+        run: npm ci --omit=dev --no-audit --no-fund
+        working-directory: creator
 
       - name: Run ranker
         env:
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+          PAYOUT_KEYPAIR: ${{ secrets.PAYOUT_KEYPAIR }}
+          PAYOUT_RPC: ${{ secrets.PAYOUT_RPC }}
           CMD: ${{ inputs.command || 'daily' }}
           PERIOD: ${{ inputs.period }}
           XUSER: ${{ inputs.user }}
+          RANK: ${{ inputs.rank }}
         run: |
           args=("$CMD")
           [ -n "$PERIOD" ] && args+=(--period "$PERIOD")
           [ -n "$XUSER" ] && args+=(--user "$XUSER")
-          node creator/src/cli.js "${args[@]}" | tee -a "$GITHUB_STEP_SUMMARY"
+          [ -n "$RANK" ] && args+=(--rank "$RANK")
+          set -o pipefail
+          node creator/src/cli.js "${args[@]}" 2>&1 | sed '/bigint: Failed to load bindings/d' | tee -a "$GITHUB_STEP_SUMMARY"
 
       - name: Commit results
+        if: always()
         env:
           CMD: ${{ inputs.command || 'daily' }}
         run: |
