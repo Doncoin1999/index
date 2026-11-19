@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DON Creator Program – DONCOIN</title>
+<link rel="icon" href="assets/doncoin-logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f2ea;--surface:#fffdf8;--ink:#10261f;--muted:#5d6b65;--line:#e4ded0;--gold:#e2a53c;--deep:#0b1c17;--good:#0a7d0a;--bad:#a8321f;--warn:#8a5200;
+  --display:"Sora","Segoe UI",system-ui,sans-serif;--body:"Manrope","Segoe UI",system-ui,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 var(--body)}
+header{background:var(--deep);color:#f5f2ea}.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+.top{display:flex;align-items:center;gap:14px;padding:22px 0}
+.top a{color:#b9c4be;text-decoration:none;margin-left:auto;font-weight:600}
+h1{font:700 24px var(--display);margin:0}h2{font:700 19px var(--display);margin:0 0 6px}
+main.wrap{padding-top:24px;padding-bottom:50px}.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:16px}
+.muted{color:var(--muted)}table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-size:12px;color:var(--muted);padding:8px;border-bottom:1px solid var(--line)}
+td{padding:9px 8px;border-bottom:1px solid #efeadf;font-variant-numeric:tabular-nums}
+.num{text-align:right}.pill{font-size:12px;font-weight:700;border-radius:99px;padding:2px 9px;white-space:nowrap}
+.ok{background:#dcefe5;color:#145c3d}.rev{background:#f6e7c8;color:var(--warn)}.no{background:#f3dcd6;color:var(--bad)}.pend{background:#efeadf;color:var(--muted)}
+.periods{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.p{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#faf8f3}
+.p b{font-family:var(--display)}.mono{font-family:ui-monospace,Menlo,monospace;font-size:12px;word-break:break-all}
+.tbl{overflow-x:auto}ol{padding-left:20px}
+</style>
+</head>
+<body>
+<header><div class="wrap top">
+  <svg width="38" height="38" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="96" fill="#E2A53C"/><polygon points="100,42 150.23,129 49.77,129" fill="#0B1C17"/></svg>
+  <div><h1>DON Creator Program</h1><div class="muted" style="color:#b9c4be">150,000 DON for the top 5 creators on X, period by period</div></div>
+  <a href="index.html">← doncoin.app</a>
+</div></header>
+<main class="wrap">
+  <div class="card" id="live"><h2>Current period</h2><p class="muted">Loading…</p></div>
+  <div class="card"><h2>All periods</h2><div class="periods" id="periods"></div></div>
+  <div class="card">
+    <h2>How to join</h2>
+    <ol>
+      <li>Post on X: <span class="mono">Joining the DON Creator Program #DONCreator wallet: &lt;your Solana address&gt;</span></li>
+      <li>Your account must be at least 6 months old and have at least 1,000 followers.</li>
+      <li>Every post about DONCOIN must mention doncoin.app or the DONCOIN account, be labelled <b>#ad</b>, and include: <i>"DON is a game token for entertainment, not an investment."</i> No price predictions or promises of returns.</li>
+      <li>Points per post: repost or quote 3, reply 2, like 1, plus 1 per 100 views. Your best 10 posts per month count.</li>
+      <li>The top 5 each period get 35 / 25 / 18 / 12 / 10 % of the period's DON. Rewards can be claimed 30 days after the period is settled.</li>
+    </ol>
+    <p class="muted">Rankings are calculated automatically every day. Suspicious engagement is reviewed before a period is settled. DON is a game token for entertainment, not an investment.</p>
+  </div>
+</main>
+<script>
+const fmt=(n)=>Number(n).toLocaleString('en-US',{maximumFractionDigits:2});
+const d=(s)=>new Date(s).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'});
+const esc=(s)=>String(s).replace(/[&<>"]/g,(c)=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const STATUS={ok:['ok','In the running'],under_review:['rev','Under review'],not_eligible:['no','Not eligible'],excluded:['no','Excluded'],rules_not_met:['no','Posts missing #ad or disclaimer'],no_posts:['pend','No posts yet']};
+const REASON={account_too_new:'account under 6 months',too_few_followers:'under 1,000 followers',registered_after_period:'registered after the period'};
+fetch('creator/results/leaderboard.json',{cache:'no-store'}).then(r=>r.json()).then(lb=>{
+  const live=document.getElementById('live');
+  if(lb.live){const p=lb.live.period;
+    live.innerHTML=`<h2>Period ${p.n}: ${d(p.start)} – ${d(lb.live.endsAt)}</h2>
+    <p class="muted">${fmt(p.total)} DON for the top 5 · ${lb.registeredCreators} registered creators · updated ${new Date(lb.updatedAt).toUTCString().slice(5,22)} UTC · standings are provisional</p>
+    <div class="tbl"><table><thead><tr><th>#</th><th>Creator</th><th class="num">Score</th><th class="num">Posts counted</th><th>Status</th><th class="num">Provisional DON</th></tr></thead><tbody>${
+      lb.live.standings.map(s=>{const [c,t]=STATUS[s.status]||['pend',s.status];const why=s.reasons?.length?' ('+s.reasons.map(r=>REASON[r]||r).join(', ')+')':'';
+        return `<tr><td>${s.provisionalRank??'–'}</td><td><a href="https://x.com/${esc(s.username)}" target="_blank" rel="noopener">@${esc(s.username)}</a></td><td class="num">${fmt(s.score)}</td><td class="num">${s.postsCounted}</td><td><span class="pill ${c}">${t}${why}</span></td><td class="num">${s.provisionalAmount!=null?fmt(s.provisionalAmount):''}</td></tr>`}).join('')||'<tr><td colspan="6" class="muted">No creators yet.</td></tr>'
+    }</tbody></table></div>`;
+  } else live.innerHTML='<h2>Current period</h2><p class="muted">No period is running right now.</p>';
+  document.getElementById('periods').innerHTML=lb.periods.map(p=>{
+    const now=Date.now(),running=now>=Date.parse(p.start)&&now<Date.parse(p.end);
+    const st=p.status==='submitted'?'<span class="pill ok">Settled</span>':p.status==='proposed'?'<span class="pill rev">In review</span>':running?'<span class="pill ok">Running</span>':now>=Date.parse(p.end)?'<span class="pill rev">Being counted</span>':'<span class="pill pend">Upcoming</span>';
+    const w=(p.winners||[]).map(x=>`<div>${x.rank}. @${esc(x.username)} – ${fmt(x.amount)} DON</div>`).join('');
+    return `<div class="p"><b>Period ${p.n}</b> ${st}<div class="muted">${d(p.start)} – ${d(p.end)} · ${fmt(p.amount)} DON</div>${w?`<div style="margin-top:6px;font-size:14px">${w}</div>`:''}${p.claimableFrom?`<div class="muted" style="font-size:13px;margin-top:4px">Claimable from ${d(p.claimableFrom)}</div>`:''}${p.autoSubmitAt?`<div class="muted" style="font-size:13px;margin-top:4px">Settles ${d(p.autoSubmitAt)} unless changed in review</div>`:''}${p.hash?`<div class="mono muted" style="margin-top:6px">hash ${p.hash.slice(0,16)}…</div>`:''}</div>`}).join('');
+}).catch(()=>{document.getElementById('live').innerHTML='<h2>Current period</h2><p class="muted">The leaderboard will appear here once the program starts.</p>'});
+</script>
+</body>
+</html>
