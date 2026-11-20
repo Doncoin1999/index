@@ -1,9 +1,33 @@
 {
   "program": "DON Creator Program",
-  "updatedAt": "2026-11-19T09:42:00.850Z",
-  "registeredCreators": 0,
+  "updatedAt": "2026-11-20T06:27:58.171Z",
+  "registeredCreators": 1,
   "payoutWallet": "EQNnTGDHWpSTGscxHoEcyc7dYHrNZiUhr5YeZ5tcdnHL",
-  "live": null,
+  "live": {
+    "period": {
+      "n": 1,
+      "start": "2026-11-20T00:00:00Z",
+      "end": "2027-03-20T00:00:00Z",
+      "amount": 50000,
+      "carryIn": 0,
+      "total": 50000,
+      "maxPostsCounted": 40
+    },
+    "endsAt": "2027-03-20T00:00:00Z",
+    "standings": [
+      {
+        "username": "Sebastianm1972",
+        "score": 0,
+        "postsCounted": 0,
+        "postsRejected": 0,
+        "status": "no_posts",
+        "reasons": [],
+        "provisionalRank": null,
+        "provisionalAmount": null,
+        "provisionalNet": null
+      }
+    ]
+  },
   "periods": [
     {
       "n": 1,

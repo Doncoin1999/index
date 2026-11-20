@@ -1,1 +1,22 @@
-{}
+{
+  "1935970944096382976": {
+    "id": "1935970944096382976",
+    "username": "Sebastianm1972",
+    "wallet": "J3ULkgoSicxGnoRrTfoNAZrqddireAePazk1aaRjPpfP",
+    "registeredAt": "2026-11-20T06:23:56.000Z",
+    "registrationPostId": "2123663616385728932",
+    "walletUpdatedAt": "2026-11-20T06:23:56.000Z",
+    "user": {
+      "username": "Sebastianm1972",
+      "created_at": "2025-06-20T08:00:26.000Z",
+      "public_metrics": {
+        "followers_count": 1337,
+        "following_count": 2576,
+        "like_count": 688,
+        "listed_count": 1,
+        "media_count": 54,
+        "tweet_count": 581
+      }
+    }
+  }
+}
